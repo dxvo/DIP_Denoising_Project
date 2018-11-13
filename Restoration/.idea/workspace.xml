@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7fb8b39d-febc-4f3c-a47f-1a9dd86aee99" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1785425167">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="jpg" value="105" />
+          <entry key="py" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Image" value="105" />
+          <entry key="Python" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="21" />
+          <entry key="py" value="2949" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="21" />
+          <entry key="Python" value="2949" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+    </session>
+    <session id="1102872181">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mean_filter_main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="128" column="47" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mean_filtering.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/mean_fjilter.py" />
+        <option value="$PROJECT_DIR$/mean_filter.py" />
+        <option value="$PROJECT_DIR$/Mean_filtering.py" />
+        <option value="$PROJECT_DIR$/mean_filter_main.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="26" />
+    <option name="y" value="28" />
+    <option name="width" value="1440" />
+    <option name="height" value="810" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Buildout</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Restoration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Restoration" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Restoration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="mean_filter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Restoration" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mean_filter_main.py" />
+      <option name="PARAMETERS" value="-i Lenna.png -f contraharmonic -r 3 -c 3 -o -3 -n pepper" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.mean_filter" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\yyhu5\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7fb8b39d-febc-4f3c-a47f-1a9dd86aee99" name="Default Changelist" comment="" />
+      <created>1541887359011</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1541887359011</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="26" y="28" width="1440" height="810" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17739628" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.5836299" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3291815" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34341636" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="R Packages" />
+      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-211041.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-211118.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-211257.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-211412.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-211506.jpg" />
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/numpy/lib/arraypad.py" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-211535.jpg" />
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lenna_with_noise_.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-215848.jpg" />
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lennagaussian.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-215933.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-220101.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_harmonic1110-220243.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-220448.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-220402.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-220808.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-221024.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-221507.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-222409.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-222618.jpg" />
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lennapepper.jpg" />
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lenna_grey_.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-222933.jpg" />
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lennasalt.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-223414.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-223616.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-221131.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_harmonic1110-224403.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-224704.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-224527.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-225743.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-225654.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-225934.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-225911.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-230035.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-230225.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-230144.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_geometric1110-230343.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_arithmetic1110-230327.jpg" />
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lenna_gaussian_noise.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-230607.jpg" />
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lenna_salt_noise.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-230652.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-230742.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lenna_grey.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-230837.jpg" />
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-230925.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/Lenna_contraharmonic1110-231143.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image_with_noise/Lenna_pepper_noise.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mean_filtering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mean_filter_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="128" column="47" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
