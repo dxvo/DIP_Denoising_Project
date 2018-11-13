@@ -29,8 +29,8 @@ class load_image:
     def display_image(self):
         try:
             File = fd.askopenfilename()#return the path
-            self.pilImage = Image.open(File) #display the path
-            resize = self.pilImage.resize((700,500),Image.ANTIALIAS)
+            self.pilImage = Image.open(File).convert('LA') #display image from path and covert to LA
+            resize = self.pilImage.resize((700,500),Image.ANTIALIAS)#scale it to window size
             self.img = ImageTk.PhotoImage(self.pilImage)
             self.canvas.delete(ALL)
             self.canvas.create_image(self.c_size[0]/2+10,self.c_size[1]/2+10,anchor = CENTER, image = self.img)
