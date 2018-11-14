@@ -22,10 +22,10 @@ class Application(tk.Tk):
         Left_frame = Frame(self,bg = "gray")
         Left_frame.pack(side = LEFT, fill = Y, padx=2, pady=2)
 
-        button1 = Button(Left_frame, text="Add Noise", fg="red", height = 5)
+        add_noise_button = Button(Left_frame, text="Add Noise", fg="red", height = 5,command = self.add_noise)
         button2 = Button(Left_frame, text="button 2", fg="red", height = 5)
-        button1.pack(pady = 1, fill = X)
-        button2.pack(pady = 1, fill = X)
+        add_noise_button.pack(pady = 3,padx = 3, fill = X)
+        button2.pack(pady = 3, padx = 3, fill = X)
 
 
     def load_image(self):
@@ -35,11 +35,30 @@ class Application(tk.Tk):
             self.img = ImageTk.PhotoImage(self.pilImage)
             label = Label(self, image=self.img)
             label.pack()
-
             self.status['text'] = "Current Image: " + File
-
         except:
             ms.showerror("Loading Error")
+
+    def add_noise(self):
+        #creating window
+        noise_window = tk.Toplevel()
+        noise_window.title("ADD NOISE")
+
+        #displaying current image
+        label = Label(noise_window, image=self.img) #this is to display image
+        label.pack()
+
+        noise_frame = Frame(noise_window, bg="gray")
+        noise_frame.pack(side=LEFT, fill=Y, padx=2, pady=2)
+
+        Gaussian_noise_button = Button(noise_frame, text="Gaussian Noise", fg="blue", height=5)
+        Gaussian_noise_button.pack(pady=3, padx=3, fill = X)
+
+        salt_noise_button = Button(noise_frame, text="Salt Noise", fg="Green", height=5)
+        salt_noise_button.pack(pady=3, padx=3, fill=X)
+
+        peppers_noise_button = Button(noise_frame, text="Salt Noise", fg="Green", height=5)
+        peppers_noise_button.pack(pady=3, padx=3, fill=X)
 
 
 if __name__ == "__main__":
