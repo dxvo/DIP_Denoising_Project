@@ -24,7 +24,9 @@ class load_image:
         #self.canvas2 = Canvas(self.master, height=size[1]/2, width=size[0]/2, bd=10, bg='black', relief="ridge")
         #self.canvas2.pack()
         self.canvas.pack()
+
         self.wt = self.canvas.create_text(size[0]/2-270,size[1]/2,font =("",30),fill = "white")
+
         frame = Frame(self.master,bg = "white",padx = 10, pady = 10)
         Button(frame,text = "Load Image", bd = 2,fg = "red", bg = "black", font = ("", 25),command = self.display_image).pack(side = LEFT)
         frame.pack()
@@ -37,6 +39,7 @@ class load_image:
             File = fd.askopenfilename() #return the path
             self.pilImage = Image.open(File).convert('LA') #display image from path and covert to LA
             #img.save('greyscale.png') //this is to save the image
+
             #resize = self.pilImage.resize((700,500),Image.ANTIALIAS)#scale it to window size
             self.img = ImageTk.PhotoImage(self.pilImage)
             self.canvas.delete(ALL)

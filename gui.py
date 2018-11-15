@@ -43,22 +43,47 @@ class Application(tk.Tk):
         #creating window
         noise_window = tk.Toplevel()
         noise_window.title("ADD NOISE")
+        #noise_window.geometry("700x500")
+
 
         #displaying current image
-        label = Label(noise_window, image=self.img) #this is to display image
-        label.pack()
+        #label = Label(noise_window, image=self.img) #this is to display image
+        #label.pack()
+
+        #self.canvas = Canvas(noise_window, height=700,width= 500,bd=10,bg='black',relief = "ridge")
+
+        # create the canvas, size in pixels
+        noise_window.canvas = Canvas(noise_window, bg='black')
+
+        # pack the canvas into a frame/form
+        noise_window.canvas.pack(expand=TRUE, fill=BOTH)
+        #resize = self.pilImage.resize((700, 500), Image.ANTIALIAS)
+
+        noise_window.canvas.create_image(0,0,anchor=NW, image=self.img) #position  NW
+
+
+        # load the .gif image file
+        #gif1 = PhotoImage(file='Lenna.png')
+        # put gif image on canvas
+        # pic's upper left corner (NW) on the canvas is at x=50 y=10
+        #noise_window.canvas.create_image(50, 10, image=gif1, anchor=NW)
 
         noise_frame = Frame(noise_window, bg="gray")
-        noise_frame.pack(side=LEFT, fill=Y, padx=2, pady=2)
+        noise_frame.pack(side=BOTTOM, fill=Y, padx=2, pady=2)
 
-        Gaussian_noise_button = Button(noise_frame, text="Gaussian Noise", fg="blue", height=5)
-        Gaussian_noise_button.pack(pady=3, padx=3, fill = X)
+        Gaussian_noise_button = Button(noise_frame, text="Gaussian Noise", fg="blue",height = 4)
+        #Gaussian_noise_button.pack(pady=3, padx=3, fill = X)
+        Gaussian_noise_button.grid(row = 0, column = 0, sticky = W)
 
-        salt_noise_button = Button(noise_frame, text="Salt Noise", fg="Green", height=5)
-        salt_noise_button.pack(pady=3, padx=3, fill=X)
+        salt_noise_button = Button(noise_frame, text="Salt Noise", fg="Green",height = 4)
+        #salt_noise_button.pack(pady=3, padx=3, fill=Y)
+        salt_noise_button.grid(row = 0, column = 1, sticky = W)
 
-        peppers_noise_button = Button(noise_frame, text="Salt Noise", fg="Green", height=5)
-        peppers_noise_button.pack(pady=3, padx=3, fill=X)
+        peppers_noise_button = Button(noise_frame, text="Peppers Noise", fg="Blue", height = 4)
+        #peppers_noise_button.pack(pady=3, padx=3, fill=X)
+        peppers_noise_button.grid(row = 0, column = 2)
+
+
 
 
 if __name__ == "__main__":
