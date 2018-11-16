@@ -3,87 +3,81 @@ from tkinter import *
 from tkinter import filedialog as fd
 from tkinter import messagebox as ms
 from PIL import Image, ImageTk
+import cv2
+import numpy as np
+from numpy import *
 
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("IMAGE RESTORATION")
-        self.geometry("600x400")
+        self.geometry("550x630")
         self.configure(background='black')
 
-        # status bar
-        self.status = Label(self, text="Current Image: None", bg="gray", font=(" ", 15), bd=2, fg="black", anchor=W)
-        self.status.pack(side=BOTTOM, fill=X)
 
         #Load image button
-        self.load_image_button = tk.Button(self,text = "Click to Load Image", fg = "red", font=("", 25),command =self.load_image)
-        self.load_image_button.pack(side = tk.BOTTOM, fill = tk.X)
-
-        Left_frame = Frame(self,bg = "gray")
-        Left_frame.pack(side = LEFT, fill = Y, padx=2, pady=2)
-
-        add_noise_button = Button(Left_frame, text="Add Noise", fg="red", height = 5,command = self.add_noise)
-        button2 = Button(Left_frame, text="button 2", fg="red", height = 5)
-        add_noise_button.pack(pady = 3,padx = 3, fill = X)
-        button2.pack(pady = 3, padx = 3, fill = X)
-
+        self.load_image_button = Button(self,text = "CLICK TO LOAD IMAGE",fg = "blue", font=("", 30), command =self.load_image)
+        self.load_image_button.pack(side = BOTTOM, fill = X)
 
     def load_image(self):
         try:
-            File = fd.askopenfilename() #return the path
-            self.pilImage = Image.open(File).convert('LA') #display image from path and covert to LA
+            #delete load_image_button
+            #add add_noise_button
+            self.load_image_button.destroy()
+            self.add_noise_button = Button(self,text = "CLICK TO ADD NOISE",fg = "blue", font=("", 30), command =self.add_noise)
+            self.add_noise_button.pack(side = BOTTOM, fill = X)
+
+            #Get image path and display
+            File = fd.askopenfilename()  # return the path
+            self.pilImage = Image.open(File).convert('L')  # display image from path and covert to L
             self.img = ImageTk.PhotoImage(self.pilImage)
-            label = Label(self, image=self.img)
-            label.pack()
-            self.status['text'] = "Current Image: " + File
+            input_image_label = Label(self, image=self.img)
+            input_image_label.pack(side = LEFT)
         except:
             ms.showerror("Loading Error")
 
+
     def add_noise(self):
-        #creating window
-        noise_window = tk.Toplevel()
-        noise_window.title("ADD NOISE")
-        #noise_window.geometry("700x500")
+        self.add_noise_button.destroy()
 
+        self.Gaussian_noise_button = Button(self, text="ADD GAUSIAN NOISE", fg="blue", font=("", 20), command = self.Gaussian_Noise)
+        self.Gaussian_noise_button.pack(side=BOTTOM, fill = X)
 
-        #displaying current image
-        #label = Label(noise_window, image=self.img) #this is to display image
-        #label.pack()
+        self.Salt_noise_button = Button(self, text="ADD SALT NOISE", fg="green", font=("", 20))
+        self.Salt_noise_button.pack(side=BOTTOM, fill = X)
 
-        #self.canvas = Canvas(noise_window, height=700,width= 500,bd=10,bg='black',relief = "ridge")
+        self.Peppers_noise_button = Button(self, text="ADD PEPPERS NOISE", fg="red", font=("", 20))
+        self.Peppers_noise_button.pack(side=BOTTOM, fill = X)
 
-        # create the canvas, size in pixels
-        noise_window.canvas = Canvas(noise_window, bg='black')
+    def Gaussian_Noise(self):
 
-        # pack the canvas into a frame/form
-        noise_window.canvas.pack(expand=TRUE, fill=BOTH)
-        #resize = self.pilImage.resize((700, 500), Image.ANTIALIAS)
+        self.Gaussian_noise_button.destroy()
+        self.Salt_noise_button.destroy()
+        self.Peppers_noise_button.destroy()
 
-        noise_window.canvas.create_image(0,0,anchor=NW, image=self.img) #position  NW
+        np.random.seed(1)
+        rows = self.img.width()
+        cols = self.img.height()
 
+        input_image = self.pilImage
+        noise_gaussian = np.random.normal(0, 20, (rows, cols))
 
-        # load the .gif image file
-        #gif1 = PhotoImage(file='Lenna.png')
-        # put gif image on canvas
-        # pic's upper left corner (NW) on the canvas is at x=50 y=10
-        #noise_window.canvas.create_image(50, 10, image=gif1, anchor=NW)
+        input_image_added_noise = input_image + noise_gaussian
+        input_image_added_noise = np.where(input_image_added_noise > 255, 255, input_image_added_noise)
+        input_image_added_noise = np.where(input_image_added_noise < 0, 0, input_image_added_noise)
 
-        noise_frame = Frame(noise_window, bg="gray")
-        noise_frame.pack(side=BOTTOM, fill=Y, padx=2, pady=2)
+        output_dir = 'Noise/'
+        gaussian_noise_image = output_dir + 'Gaussian_Noise' + ".png"
+        cv2.imwrite(gaussian_noise_image, input_image_added_noise)
 
-        Gaussian_noise_button = Button(noise_frame, text="Gaussian Noise", fg="blue",height = 4)
-        #Gaussian_noise_button.pack(pady=3, padx=3, fill = X)
-        Gaussian_noise_button.grid(row = 0, column = 0, sticky = W)
+        gaussian_image_path = "Noise/Gaussian_Noise.png"
+        gaussian_pil_image = Image.open(gaussian_image_path)
 
-        salt_noise_button = Button(noise_frame, text="Salt Noise", fg="Green",height = 4)
-        #salt_noise_button.pack(pady=3, padx=3, fill=Y)
-        salt_noise_button.grid(row = 0, column = 1, sticky = W)
+        image_add_gaussian_noise = ImageTk.PhotoImage(gaussian_pil_image)
 
-        peppers_noise_button = Button(noise_frame, text="Peppers Noise", fg="Blue", height = 4)
-        #peppers_noise_button.pack(pady=3, padx=3, fill=X)
-        peppers_noise_button.grid(row = 0, column = 2)
-
-
+        gaussian_noise_image_label = Label(self, image=image_add_gaussian_noise)
+        gaussian_noise_image_label.image = image_add_gaussian_noise  # to keep reference
+        gaussian_noise_image_label.pack(side=LEFT)
 
 
 if __name__ == "__main__":
