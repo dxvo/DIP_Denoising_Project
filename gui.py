@@ -41,16 +41,15 @@ class Application(tk.Tk):
         self.add_noise_button.destroy()
 
         self.Gaussian_noise_button = Button(self, text="ADD GAUSIAN NOISE", fg="blue", font=("", 20), command = self.Gaussian_Noise)
-        self.Gaussian_noise_button.pack(side=BOTTOM, fill = X)
+        self.Gaussian_noise_button.pack(side=LEFT, fill = X)
 
-        self.Salt_noise_button = Button(self, text="ADD SALT NOISE", fg="green", font=("", 20))
-        self.Salt_noise_button.pack(side=BOTTOM, fill = X)
+        self.Salt_noise_button = Button(self, text="ADD SALT NOISE", fg="green", font=("", 20),command = self.Salt_Noise)
+        self.Salt_noise_button.pack(side=LEFT, fill = X)
 
-        self.Peppers_noise_button = Button(self, text="ADD PEPPERS NOISE", fg="red", font=("", 20))
-        self.Peppers_noise_button.pack(side=BOTTOM, fill = X)
+        self.Peppers_noise_button = Button(self, text="ADD PEPPERS NOISE", fg="red", font=("", 20),command = self.Peppers_Noise)
+        self.Peppers_noise_button.pack(side=LEFT, fill = X)
 
     def Gaussian_Noise(self):
-
         self.Gaussian_noise_button.destroy()
         self.Salt_noise_button.destroy()
         self.Peppers_noise_button.destroy()
@@ -71,14 +70,77 @@ class Application(tk.Tk):
         cv2.imwrite(gaussian_noise_image, input_image_added_noise)
 
         gaussian_image_path = "Noise/Gaussian_Noise.png"
-        gaussian_pil_image = Image.open(gaussian_image_path)
+        gaussian_PIL_image = Image.open(gaussian_image_path)
 
-        image_add_gaussian_noise = ImageTk.PhotoImage(gaussian_pil_image)
+        image_add_gaussian_noise = ImageTk.PhotoImage(gaussian_PIL_image)
 
         gaussian_noise_image_label = Label(self, image=image_add_gaussian_noise)
         gaussian_noise_image_label.image = image_add_gaussian_noise  # to keep reference
         gaussian_noise_image_label.pack(side=LEFT)
 
+    def Salt_Noise(self):
+        np.random.seed(1)
+        self.Gaussian_noise_button.destroy()
+        self.Salt_noise_button.destroy()
+        self.Peppers_noise_button.destroy()
+
+        rows = self.img.width()
+        cols = self.img.height()
+
+        input_image = self.pilImage
+        prob = 0.1
+        noise_salt = np.random.randint(0, 256, (rows, cols))
+        noise_salt = np.where(noise_salt < prob * 256, 255, 0)
+        #input_image.astype("float")
+        noise_salt.astype("float")
+
+        input_image_added_noise = input_image + noise_salt
+        input_image_added_noise = np.where(input_image_added_noise > 255, 255, input_image_added_noise)
+
+        output_dir = 'Noise/'
+        salt_noise_image = output_dir + 'Salt_Noise' + ".png"
+        cv2.imwrite(salt_noise_image, input_image_added_noise)
+
+        salt_image_path = "Noise/Salt_Noise.png"
+        salt_PIL_image = Image.open(salt_image_path)
+
+        image_add_salt_noise = ImageTk.PhotoImage(salt_PIL_image)
+
+        salt_noise_image_label = Label(self, image=image_add_salt_noise)
+        salt_noise_image_label.image = image_add_salt_noise  # to keep reference
+        salt_noise_image_label.pack(side=LEFT)
+
+    def Peppers_Noise(self):
+        np.random.seed(1)
+        self.Gaussian_noise_button.destroy()
+        self.Salt_noise_button.destroy()
+        self.Peppers_noise_button.destroy()
+
+        rows = self.img.width()
+        cols = self.img.height()
+
+        input_image = self.pilImage
+
+        prob = 0.1
+        noise_pepper = np.random.randint(0, 256, (rows, cols))
+        noise_pepper = np.where(noise_pepper < prob * 256, -255, 0)
+        #input_image.astype("float")
+        noise_pepper.astype("float")
+
+        input_image_added_noise = input_image + noise_pepper
+        input_image_added_noise = np.where(input_image_added_noise < 0, 0, input_image_added_noise)
+
+        output_dir = 'Noise/'
+        peppers_noise_image = output_dir + 'Peppers_Noise' + ".png"
+        cv2.imwrite(peppers_noise_image, input_image_added_noise)
+
+        peppers_image_path = "Noise/Peppers_Noise.png"
+        peppers_PIL_image = Image.open(peppers_image_path)
+
+        image_add_peppers_noise = ImageTk.PhotoImage(peppers_PIL_image)
+        peppers_noise_image_label = Label(self, image=image_add_peppers_noise)
+        peppers_noise_image_label.image = image_add_peppers_noise  # to keep reference
+        peppers_noise_image_label.pack(side=LEFT)
 
 if __name__ == "__main__":
     application = Application()
