@@ -11,7 +11,7 @@ import restart
 class Rayleigh(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("FILTERING")
+        self.title("RAYLEIGH NOISE FILTERING")
 
         image_path = "Noise/Rayleigh_Noise.png"
         self.PIL_image = Image.open(image_path)

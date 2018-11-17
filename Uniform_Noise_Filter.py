@@ -11,7 +11,7 @@ import restart
 class Uniform(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("FILTERING")
+        self.title("UNIFORM NOISE FILTERING ")
 
         image_path = "Noise/Uniform_Noise.png"
         self.PIL_image = Image.open(image_path)

@@ -47,7 +47,6 @@ class Application(tk.Tk):
         except:
             ms.showerror("Loading Error")
 
-
     def add_noise(self):
         self.add_noise_button.destroy()
 
@@ -104,7 +103,6 @@ class Application(tk.Tk):
 
         Filter_Button = Button(self.noise_window, text="Select Filter", fg="blue", font=("", 20),command = self.gaussian)
         Filter_Button.pack(side=TOP, fill=BOTH)
-
 
     def Salt_Noise(self):
         self.noise_window = tk.Toplevel()
@@ -303,6 +301,7 @@ class Application(tk.Tk):
         Filter_Button.pack(side=TOP, fill=BOTH)
 
 
+    #these functions call the class for filtering
     def gaussian(self):
         self.noise_window.destroy()
         self.destroy()
@@ -338,6 +337,11 @@ class Application(tk.Tk):
         python = sys.executable
         os.execl(python, python, *sys.argv)
 
+#doing thre strip
+#diaglogbox to get parameters
+
+
 if __name__ == "__main__":
     application = Application()
     application.mainloop()
+

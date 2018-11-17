@@ -11,7 +11,7 @@ import restart
 class Salt(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("FILTERING")
+        self.title("SALT NOISE FILTERING")
 
         gaussian_image_path = "Noise/Salt_Noise.png"
         self.PIL_image = Image.open(gaussian_image_path)

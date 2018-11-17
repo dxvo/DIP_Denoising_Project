@@ -11,7 +11,7 @@ import restart
 class Peppers(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("FILTERING")
+        self.title("PEPPERS NOISE FILTERING")
 
         gaussian_image_path = "Noise/Peppers_Noise.png"
         self.PIL_image = Image.open(gaussian_image_path)
