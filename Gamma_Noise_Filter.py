@@ -12,6 +12,7 @@ class Gamma(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("GAMMA NOISE FILTERING")
+        self.configure(background='black')
 
         image_path = "Noise/Gamma_Noise.png"
         self.PIL_image = Image.open(image_path)

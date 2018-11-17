@@ -24,6 +24,7 @@ class Application(tk.Tk):
 
         self.button1 = Button(self,text ="Restart", font = (" ", 20), highlightbackground='blue', command = self.restart_program)
         self.button1.pack(side = BOTTOM)
+
         #Load image button
         self.load_image_button = Button(self,text = "\n\n\tCLICK TO LOAD IMAGE\t\n\n",fg = "black", highlightbackground='gray',
                                         font=("Helvetica",40), command =self.load_image)

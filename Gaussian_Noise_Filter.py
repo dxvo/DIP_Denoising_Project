@@ -12,6 +12,7 @@ class Gaussian(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("GAUSSIAN NOISE FILTERING")
+        self.configure(background='black')
 
         gaussian_image_path = "Noise/Gaussian_Noise.png"
         self.PIL_image = Image.open(gaussian_image_path)
