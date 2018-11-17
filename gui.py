@@ -11,13 +11,14 @@ class Application(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("IMAGE RESTORATION")
-        self.geometry("550x630")
+        #self.geometry("550x550")
         self.configure(background='black')
 
-
         #Load image button
-        self.load_image_button = Button(self,text = "CLICK TO LOAD IMAGE",fg = "blue", font=("", 30), command =self.load_image)
+        self.load_image_button = Button(self,text = "\n\n\tCLICK TO LOAD IMAGE\t\n\n",fg = "blue", highlightbackground='gray',
+                                        font=("Helvetica",40), command =self.load_image)
         self.load_image_button.pack(side = BOTTOM, fill = X)
+
 
     def load_image(self):
         try:
@@ -31,8 +32,8 @@ class Application(tk.Tk):
             File = fd.askopenfilename()  # return the path
             self.pilImage = Image.open(File).convert('L')  # display image from path and covert to L
             self.img = ImageTk.PhotoImage(self.pilImage)
-            input_image_label = Label(self, image=self.img)
-            input_image_label.pack(side = LEFT)
+            self.input_image_label = Label(self, image=self.img)
+            self.input_image_label.pack(side = LEFT)
         except:
             ms.showerror("Loading Error")
 
@@ -40,19 +41,19 @@ class Application(tk.Tk):
     def add_noise(self):
         self.add_noise_button.destroy()
 
-        self.Gaussian_noise_button = Button(self, text="ADD GAUSIAN NOISE", fg="blue", font=("", 20), command = self.Gaussian_Noise)
-        self.Gaussian_noise_button.pack(side=LEFT, fill = X)
+        self.Gaussian_noise_button = Button(self, text="ADD GAUSIAN NOISE", highlightbackground='gray',fg="blue", font=("", 20), command = self.Gaussian_Noise)
+        self.Gaussian_noise_button.pack(side = BOTTOM, fill = X)
 
-        self.Salt_noise_button = Button(self, text="ADD SALT NOISE", fg="green", font=("", 20),command = self.Salt_Noise)
-        self.Salt_noise_button.pack(side=LEFT, fill = X)
+        self.Salt_noise_button = Button(self, text="ADD SALT NOISE", fg="green", highlightbackground='gray',font=("", 20),command = self.Salt_Noise)
+        self.Salt_noise_button.pack(side = BOTTOM, fill = X)
 
-        self.Peppers_noise_button = Button(self, text="ADD PEPPERS NOISE", fg="red", font=("", 20),command = self.Peppers_Noise)
-        self.Peppers_noise_button.pack(side=LEFT, fill = X)
+        self.Peppers_noise_button = Button(self, text="ADD PEPPERS NOISE", highlightbackground='gray',fg="red", font=("", 20),command = self.Peppers_Noise)
+        self.Peppers_noise_button.pack(side = BOTTOM, fill = X)
+
 
     def Gaussian_Noise(self):
-        self.Gaussian_noise_button.destroy()
-        self.Salt_noise_button.destroy()
-        self.Peppers_noise_button.destroy()
+        noise_window = tk.Toplevel()
+        noise_window.title("Gaussian Noise Image")
 
         np.random.seed(1)
         rows = self.img.width()
@@ -74,16 +75,26 @@ class Application(tk.Tk):
 
         image_add_gaussian_noise = ImageTk.PhotoImage(gaussian_PIL_image)
 
-        gaussian_noise_image_label = Label(self, image=image_add_gaussian_noise)
+        original_image_label = Label(noise_window, image=self.img)
+        original_image_label.pack(side = LEFT)
+
+        gaussian_noise_image_label = Label(noise_window, image=image_add_gaussian_noise)
         gaussian_noise_image_label.image = image_add_gaussian_noise  # to keep reference
         gaussian_noise_image_label.pack(side=LEFT)
 
-    def Salt_Noise(self):
-        np.random.seed(1)
-        self.Gaussian_noise_button.destroy()
-        self.Salt_noise_button.destroy()
-        self.Peppers_noise_button.destroy()
+        Go_Back_Button = Button(noise_window, text="UNDO", fg="blue", font=("", 20),highlightbackground='gray',command=noise_window.destroy)
+        Go_Back_Button.pack(side = BOTTOM, fill=BOTH)
 
+        Filter_Button = Button(noise_window, text="Apply Filter", fg="blue", font=("", 20), highlightbackground='gray')
+        Filter_Button.pack(side=TOP, fill=BOTH)
+
+
+
+    def Salt_Noise(self):
+        noise_window = tk.Toplevel()
+        noise_window.title("Salt Noise Image")
+
+        np.random.seed(1)
         rows = self.img.width()
         cols = self.img.height()
 
@@ -103,24 +114,28 @@ class Application(tk.Tk):
 
         salt_image_path = "Noise/Salt_Noise.png"
         salt_PIL_image = Image.open(salt_image_path)
-
         image_add_salt_noise = ImageTk.PhotoImage(salt_PIL_image)
 
-        salt_noise_image_label = Label(self, image=image_add_salt_noise)
+        original_image_label = Label(noise_window, image=self.img)
+        original_image_label.pack(side=LEFT)
+
+        salt_noise_image_label = Label(noise_window, image=image_add_salt_noise)
         salt_noise_image_label.image = image_add_salt_noise  # to keep reference
         salt_noise_image_label.pack(side=LEFT)
 
-    def Peppers_Noise(self):
-        np.random.seed(1)
-        self.Gaussian_noise_button.destroy()
-        self.Salt_noise_button.destroy()
-        self.Peppers_noise_button.destroy()
+        Go_Back_Button = Button(noise_window, text="UNDO", fg="green", font=("", 20), highlightbackground='gray',command=noise_window.destroy)
+        Go_Back_Button.pack(side=BOTTOM, fill=BOTH)
 
+    def Peppers_Noise(self):
+
+        noise_window = tk.Toplevel()
+        noise_window.title("Peppers Noise Image")
+
+        np.random.seed(1)
         rows = self.img.width()
         cols = self.img.height()
 
         input_image = self.pilImage
-
         prob = 0.1
         noise_pepper = np.random.randint(0, 256, (rows, cols))
         noise_pepper = np.where(noise_pepper < prob * 256, -255, 0)
@@ -136,11 +151,22 @@ class Application(tk.Tk):
 
         peppers_image_path = "Noise/Peppers_Noise.png"
         peppers_PIL_image = Image.open(peppers_image_path)
-
         image_add_peppers_noise = ImageTk.PhotoImage(peppers_PIL_image)
-        peppers_noise_image_label = Label(self, image=image_add_peppers_noise)
+
+        original_image_label = Label(noise_window, image=self.img)
+        original_image_label.pack(side=LEFT)
+
+        peppers_noise_image_label = Label(noise_window, image=image_add_peppers_noise)
         peppers_noise_image_label.image = image_add_peppers_noise  # to keep reference
         peppers_noise_image_label.pack(side=LEFT)
+
+        Go_Back_Button = Button(noise_window, text="UNDO", fg="red", font=("", 20), highlightbackground='gray',command=noise_window.destroy)
+        Go_Back_Button.pack(side=BOTTOM, fill=BOTH)
+
+#do the crop thing
+#estimate noise parameters
+#add dialog for
+#look for go back button
 
 if __name__ == "__main__":
     application = Application()
