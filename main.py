@@ -9,7 +9,8 @@ from numpy import *
 from Gaussian_Noise_Filter import Gaussian
 from Salt_Noise_Filter import Salt
 from Peppers_Noise_Filter import Peppers
-
+import sys
+import os
 
 class Application(tk.Tk):
     def __init__(self):
@@ -23,6 +24,8 @@ class Application(tk.Tk):
                                         font=("Helvetica",40), command =self.load_image)
         self.load_image_button.pack(side = BOTTOM, fill = X)
 
+        self.button1 = Button(self,text ="restart", command = self.restart_program)
+        self.button1.pack()
 
     def load_image(self):
         try:
@@ -187,6 +190,10 @@ class Application(tk.Tk):
         self.destroy()
         Peppers()
 
+
+    def restart_program(self):
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
 
 if __name__ == "__main__":
     application = Application()
