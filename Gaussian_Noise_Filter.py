@@ -20,7 +20,7 @@ class Gaussian(tk.Tk):
         gaussian_noise_image_label = Label(self, image=self.image_add_gaussian_noise)
         gaussian_noise_image_label.pack(side=LEFT)
 
-        self.arithmetic_button = Button(self, text=" Arithmetic Mean Filter", fg="blue", font=("", 20),command = self.restart)
+        self.arithmetic_button = Button(self, text=" Arithmetic Mean Filter", fg="blue", font=("", 20),command = self.print)
         self.arithmetic_button.pack(side=TOP)
 
         self.geometric_button = Button(self, text=" Geometric Mean Filter", fg="blue", font=("", 20),command=self.print)
@@ -47,6 +47,10 @@ class Gaussian(tk.Tk):
 
         self.adaptive_button = Button(self, text="Adaptive Filter", fg="blue", font=("", 20), command=self.print)
         self.adaptive_button.pack(side=TOP)
+
+        self.restart_button = Button(self, text="Restart Program", fg="RED", font=("", 20), highlightbackground='Yellow', command=self.restart)
+        self.restart_button.pack(side=BOTTOM)
+
 
     def restart(self):
         restart.restart_program(self)

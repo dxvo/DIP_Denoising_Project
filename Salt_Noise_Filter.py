@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 import cv2
 import numpy as np
 from numpy import *
-
+import restart
 
 class Salt(tk.Tk):
     def __init__(self):
@@ -48,6 +48,11 @@ class Salt(tk.Tk):
         self.adaptive_button = Button(self, text="Adaptive Filter", fg="blue", font=("", 20), command=self.print)
         self.adaptive_button.pack(side=TOP)
 
+        self.restart_button = Button(self, text="Restart Program", fg="RED", font=("", 20), highlightbackground='Yellow', command=self.restart)
+        self.restart_button.pack(side=BOTTOM)
+
+    def restart(self):
+        restart.restart_program(self)
 
     def print(self):
         print("Hello")

@@ -8,17 +8,17 @@ import numpy as np
 from numpy import *
 import restart
 
-class Peppers(tk.Tk):
+class Gamma(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("FILTERING")
 
-        gaussian_image_path = "Noise/Peppers_Noise.png"
-        self.PIL_image = Image.open(gaussian_image_path)
-        self.image_add_gaussian_noise = ImageTk.PhotoImage(self.PIL_image)
+        image_path = "Noise/Gamma_Noise.png"
+        self.PIL_image = Image.open(image_path)
+        self.image_noise = ImageTk.PhotoImage(self.PIL_image)
 
-        gaussian_noise_image_label = Label(self, image=self.image_add_gaussian_noise)
-        gaussian_noise_image_label.pack(side=LEFT)
+        noise_image_label = Label(self, image=self.image_noise)
+        noise_image_label.pack(side=LEFT)
 
         self.arithmetic_button = Button(self, text=" Arithmetic Mean Filter", fg="blue", font=("", 20),command = self.print)
         self.arithmetic_button.pack(side=TOP)
@@ -50,6 +50,7 @@ class Peppers(tk.Tk):
 
         self.restart_button = Button(self, text="Restart Program", fg="RED", font=("", 20), highlightbackground='Yellow', command=self.restart)
         self.restart_button.pack(side=BOTTOM)
+
 
     def restart(self):
         restart.restart_program(self)
