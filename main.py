@@ -42,6 +42,7 @@ class Application(tk.Tk):
             #Get image path and display
             File = fd.askopenfilename()  # return the path
             self.pilImage = Image.open(File).convert('L')  # display image from path and covert to L
+            self.pilImage = self.pilImage.resize((512, 512), Image.ANTIALIAS)
             self.img = ImageTk.PhotoImage(self.pilImage)
             self.input_image_label = Label(self, image=self.img)
             self.input_image_label.pack(side = LEFT)
@@ -340,7 +341,7 @@ class Application(tk.Tk):
 
 #doing thre strip
 #diaglogbox to get parameters
-
+#add 
 
 if __name__ == "__main__":
     application = Application()

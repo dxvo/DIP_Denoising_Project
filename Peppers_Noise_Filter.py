@@ -59,5 +59,7 @@ class Peppers(tk.Tk):
     def restart(self):
         restart.restart_program(self)
 
+#add midpoint and adaptice reduction
+
     def print(self):
         print("Hello")
