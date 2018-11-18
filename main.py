@@ -15,6 +15,8 @@ from Uniform_Noise_Filter import Uniform
 from Rayleigh_Noise_Filter import Rayleigh
 from Gamma_Noise_Filter import Gamma
 
+from crop import  Gaussian_Cropping
+
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -86,8 +88,12 @@ class Application(tk.Tk):
         input_image_added_noise = np.where(input_image_added_noise < 0, 0, input_image_added_noise)
 
         output_dir = 'Noise/'
+        #copy_output_dir = "Copy/"
         gaussian_noise_image = output_dir + 'Gaussian_Noise' + ".png"
+        #copy_sgaussian_noise_image = copy_output_dir + 'Copy_Gaussian_Noise' + ".png"
+
         cv2.imwrite(gaussian_noise_image, input_image_added_noise)
+        #cv2.imwrite(copy_sgaussian_noise_image, input_image_added_noise)
 
         gaussian_image_path = "Noise/Gaussian_Noise.png"
         gaussian_PIL_image = Image.open(gaussian_image_path)
@@ -100,11 +106,16 @@ class Application(tk.Tk):
         gaussian_noise_image_label.image = image_add_gaussian_noise  # to keep reference
         gaussian_noise_image_label.pack(side=LEFT)
 
-        Go_Back_Button = Button(self.noise_window, text="UNDO", fg="blue", font=("", 20),command=self.noise_window.destroy)
+        Go_Back_Button = Button(self.noise_window, text="UNDO", fg="blue", font=("", 22),command=self.noise_window.destroy)
         Go_Back_Button.pack(side = BOTTOM, fill=BOTH)
 
-        Filter_Button = Button(self.noise_window, text="Select Filter", fg="blue", font=("", 20),command = self.gaussian)
+        Filter_Button = Button(self.noise_window, text="Filter Selection", fg="blue", font=("", 22),command = self.gaussian)
         Filter_Button.pack(side=TOP, fill=BOTH)
+
+        #button to select noise option
+        Image_Cropping_Button = Button(self.noise_window, text="Noise Analysis", fg="Red", font=("", 22),command = self.gaussian_analysis)
+        Image_Cropping_Button.pack(side=TOP, fill=BOTH)
+
 
     def Salt_Noise(self):
         self.noise_window = tk.Toplevel()
@@ -127,6 +138,7 @@ class Application(tk.Tk):
         output_dir = 'Noise/'
         salt_noise_image = output_dir + 'Salt_Noise' + ".png"
         cv2.imwrite(salt_noise_image, input_image_added_noise)
+
 
         salt_image_path = "Noise/Salt_Noise.png"
         salt_PIL_image = Image.open(salt_image_path)
@@ -334,14 +346,17 @@ class Application(tk.Tk):
         self.destroy()
         Gamma()
 
-
     def restart_program(self):
         python = sys.executable
         os.execl(python, python, *sys.argv)
 
-#doing thre strip
-#diaglogbox to get parameters
-#add 
+
+    #-----------------Noise Analysis----------------------
+    def gaussian_analysis(self):
+        self.noise_window.destroy()
+        self.destroy()
+        Gaussian_Cropping()
+
 
 if __name__ == "__main__":
     application = Application()
