@@ -1,7 +1,8 @@
 from tkinter import *
-import tkinter as tk # this is in python 3.4. For python 2.x import Tkinter
+import tkinter as tk
 from PIL import Image, ImageTk
-import cv2
+import numpy as np
+import noise_estimation as ne
 
 class Gaussian_Cropping(tk.Tk):
     def __init__(self):
@@ -65,7 +66,7 @@ class Gaussian_Cropping(tk.Tk):
         self.canvas.destroy()
         self.button1.destroy()
         #self.frame.destroy()
-        print(self.area)
+        print("Cropped region coordinates are ", self.area)
 
         #display noise image to window
         image_path = "Noise/Gaussian_Noise.png"
@@ -92,5 +93,11 @@ class Gaussian_Cropping(tk.Tk):
 
 
     def compute_statistic(self):
+        region_path = Image.open("Cropped/Cropped_Gaussian_Image.png")
+        region_array = np.array(region_path)
 
+        cropped_image_array = np.uint8(np.where(region_array < 0, 0, np.where(region_array > 255, 255, region_array)))
+        output_hist, mean_value, var_value = ne.estimating(cropped_image_array)
+
+        print("Mean is {}, Variance is {}".format(mean_value, var_value))
         print("hello")
