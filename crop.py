@@ -86,4 +86,11 @@ class Gaussian_Cropping(tk.Tk):
         cropped_image_label = Label(self, image=self.cropped_image)
         cropped_image_label.pack(side=LEFT)
 
+        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25), )
+        self.button2.pack()
         #self.quit()
+
+
+    def compute_statistic(self):
+
+        print("hello")
