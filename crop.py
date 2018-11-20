@@ -32,7 +32,7 @@ class Gaussian_Cropping(tk.Tk):
         self.frame = Frame(self, bg = "black", height = 2)
         self.frame.pack(side = BOTTOM)
 
-        self.button1 = Button(self.frame, text = "Click to Crop Region", relief = "sunken", command = self.crop, font = (" ", 25),)
+        self.button1 = Button(self.frame, text = "Click to Crop Region", relief = "sunken", command = self.crop, font = (" ", 25),fg = "blue")
         self.button1.pack()
 
 
@@ -98,11 +98,10 @@ class Gaussian_Cropping(tk.Tk):
         cropped_image_label = Label(self, image=self.cropped_image)
         cropped_image_label.pack(side=LEFT)
 
-        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25))
-        self.button2.pack()
+        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25),fg = "blue")
+        self.button2.pack(side = LEFT)
 
-        self.button3 = Button(self.frame, text="Apply Filter", relief="sunken", command=self.apply_filter, font=(" ", 25),width = 16)
-        self.button3.pack()
+
 
 
         #self.quit()
@@ -160,8 +159,11 @@ class Gaussian_Cropping(tk.Tk):
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         f.savefig("Cropped/histogram/Gaussian_Histogram.png")
         #tk.mainloop()
-        self.button3 = Button(self.frame, text="Quit/Restart", relief="sunken", command=self.restart_program,font=(" ", 25),width = 16)
-        self.button3.pack()
+        self.button3 = Button(self.frame, text="Quit/Restart", relief="sunken", command=self.restart_program,font=(" ", 25),fg = "blue")
+        self.button3.pack(side = RIGHT)
+
+        self.button4 = Button(self.frame, text="Apply Filter", relief="sunken", command=self.apply_filter, font=(" ", 25), fg="blue")
+        self.button4.pack(side=LEFT)
 
     def restart_program(self):
         python = sys.executable
