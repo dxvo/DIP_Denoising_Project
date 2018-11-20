@@ -1,3 +1,5 @@
+#this is to plot the histogram
+
 import matplotlib
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
@@ -17,7 +19,6 @@ rows, cols = img.shape
 #noise = np.random.randint(-50, 50, (rows, cols)) #uniform
 
 noise = np.random.normal(0, 30, (rows, cols)) #gaussian
-
 img = img + noise
 h = np.histogram(img, bins=np.arange(256), density=True)
 

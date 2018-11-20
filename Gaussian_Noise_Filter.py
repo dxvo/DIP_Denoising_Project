@@ -12,7 +12,6 @@ import restart
 class Gaussian(tk.Tk):
     def __init__(self):
         super().__init__()
-
         self.filter_h = None
         self.filter_w = None
 
@@ -85,5 +84,34 @@ class Gaussian(tk.Tk):
                 filtered_image[h, w] = 1 / (self.filter_h * self.filter_w) * np.sum(image_slice)
 
         output_dir = 'Filtered_Image/'
-        filtered_path = output_dir + 'Arithmetic_Result' + str(self.filter_h) + "x" + str(self.filter_w) + ".png"
+        #filtered_path = output_dir + 'Arithmetic_Result' + str(self.filter_h) + "x" + str(self.filter_w) + ".png"
+        filtered_path = output_dir + 'Arithmetic_Result' + ".png"
         cv2.imwrite(filtered_path, filtered_image)
+
+        #------ Now displaying image
+        self.result_frame = tk.Toplevel()
+        self.result_frame.title("Displaying Result")
+
+        before_filter_image= Image.open("Noise/Gaussian_Noise.png")
+        before_filter_image_tk = ImageTk.PhotoImage(before_filter_image)
+
+        before_filter_label = Label(self.result_frame, image=before_filter_image_tk)
+        before_filter_label.img = before_filter_image_tk
+        before_filter_label.pack(side=LEFT)
+
+        after_filter_image = Image.open('Filtered_Image/Arithmetic_Result.png')
+        after_filter_image_tk = ImageTk.PhotoImage(after_filter_image)
+
+        after_filter_label = Label(self.result_frame, image=after_filter_image_tk)
+        after_filter_label.img = after_filter_image_tk
+        after_filter_label.pack(side=LEFT)
+
+        button1 = Button(self.result_frame, text="Undo", fg="blue", font=("", 20), command=self.close)
+        button1.pack(side=BOTTOM,fill=BOTH)
+
+
+    def close(self):
+        self.result_frame.destroy()
+
+
+
