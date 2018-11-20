@@ -15,7 +15,7 @@ from Uniform_Noise_Filter import Uniform
 from Rayleigh_Noise_Filter import Rayleigh
 from Gamma_Noise_Filter import Gamma
 
-from crop import  Gaussian_Cropping
+from crop import  *
 
 class Application(tk.Tk):
     def __init__(self):
@@ -207,7 +207,7 @@ class Application(tk.Tk):
 
         input_image = self.pilImage
 
-        noise_uniform = np.random.randint(-30, 30, (rows, cols))
+        noise_uniform = np.random.randint(-60, 60, (rows, cols))
         noise_uniform.astype("float")
         input_image_added_noise = input_image + noise_uniform
         input_image_added_noise = np.uint8(np.where(input_image_added_noise < 0, 0, np.where(input_image_added_noise > 255, 255, input_image_added_noise)))
@@ -232,6 +232,11 @@ class Application(tk.Tk):
         Go_Back_Button.pack(side=BOTTOM, fill=BOTH)
         Filter_Button = Button(self.noise_window, text="Select Filter", fg="blue", font=("", 20), command=self.uniform)
         Filter_Button.pack(side=TOP, fill=BOTH)
+
+        #button to select noise option
+        Image_Cropping_Button = Button(self.noise_window, text="Noise Analysis", fg="Red", font=("", 22),command = self.uniform_analysis)
+        Image_Cropping_Button.pack(side=TOP, fill=BOTH)
+
 
     def Rayleigh_Noise(self):
         self.noise_window = tk.Toplevel()
@@ -355,6 +360,11 @@ class Application(tk.Tk):
         self.noise_window.destroy()
         self.destroy()
         Gaussian_Cropping()
+
+    def uniform_analysis(self):
+        self.noise_window.destroy()
+        self.destroy()
+        Uniform_Cropping()
 
 
 if __name__ == "__main__":

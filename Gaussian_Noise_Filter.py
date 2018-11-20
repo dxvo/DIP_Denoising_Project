@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import filedialog as fd
 from tkinter import messagebox as ms
+from PIL import *
 from PIL import Image, ImageTk
 import cv2
 import numpy as np
@@ -11,6 +12,10 @@ import restart
 class Gaussian(tk.Tk):
     def __init__(self):
         super().__init__()
+
+        self.filter_h = None
+        self.filter_w = None
+
         self.title("GAUSSIAN NOISE FILTERING")
         self.configure(background='black')
 
@@ -35,7 +40,7 @@ class Gaussian(tk.Tk):
         self.adaptive_button.pack(side=TOP, fill=BOTH)
 
         #mean
-        self.arithmetic_button = Button(self, text=" Arithmetic Mean Filter", fg="blue", font=("", 20),command = self.print)
+        self.arithmetic_button = Button(self, text=" Arithmetic Mean Filter", fg="blue", font=("", 20),command = self.arithmetic_mean)
         self.arithmetic_button.pack(side=TOP, fill=BOTH)
 
         self.geometric_button = Button(self, text=" Geometric Mean Filter", fg="blue", font=("", 20),command=self.print)
@@ -59,4 +64,26 @@ class Gaussian(tk.Tk):
         restart.restart_program(self)
 
     def print(self):
-        print("Hello")
+        print("hello")
+    def arithmetic_mean(self):
+        self.filter_h = 5
+        self.filter_w = 5
+        pad_h = int(1 / 2 * (self.filter_h - 1))  #think there should be +.5
+        pad_w = int(1 / 2 * (self.filter_w - 1))
+        image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
+
+        width,height = self.PIL_image.size
+        filtered_image = np.zeros((height, width))
+
+        for h in range(height):
+            for w in range(width):
+                vert_start = h
+                vert_end = h + self.filter_h
+                horiz_start = w
+                horiz_end = w + self.filter_w
+                image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
+                filtered_image[h, w] = 1 / (self.filter_h * self.filter_w) * np.sum(image_slice)
+
+        output_dir = 'Filtered_Image/'
+        filtered_path = output_dir + 'Arithmetic_Result' + str(self.filter_h) + "x" + str(self.filter_w) + ".png"
+        cv2.imwrite(filtered_path, filtered_image)
