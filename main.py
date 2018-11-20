@@ -123,7 +123,7 @@ class Application(tk.Tk):
 
 
     #this is to get user noise input
-    def get_noise_parameter(self,noise_type):
+    def noise_parameter(self,noise_type):
         if (noise_type == "salt" or noise_type == "peppers"):
             self.noise_prob = float(self.my_prob_entry.get())
 
@@ -147,7 +147,7 @@ class Application(tk.Tk):
             self.my_prob_entry = tk.Entry(self.input_window)
             self.my_prob_entry.grid(row=1, column=1)
 
-            my_button = tk.Button(self.input_window, text="Submit", command= lambda:self.get_noise_parameter(noise_type))
+            my_button = tk.Button(self.input_window, text="Submit", command= lambda:self.noise_parameter(noise_type))
             my_button.grid(row=3, column=1)
             self.wait_window(self.input_window)
 
@@ -163,10 +163,9 @@ class Application(tk.Tk):
             self.my_a_entry.grid(row=1, column=1)
             self.my_b_entry = tk.Entry(self.input_window)
             self.my_b_entry.grid(row=2, column=1)
-            my_button = tk.Button(self.input_window, text="Submit", command= lambda:self.get_noise_parameter(noise_type))
+            my_button = tk.Button(self.input_window, text="Submit", command= lambda:self.noise_parameter(noise_type))
             my_button.grid(row=3, column=1)
             self.wait_window(self.input_window)
-
 
 
     def Salt_Noise(self):
@@ -293,7 +292,6 @@ class Application(tk.Tk):
         #button to select noise option
         Image_Cropping_Button = Button(self.noise_window, text="Noise Analysis", fg="Red", font=("", 22),command = self.uniform_analysis)
         Image_Cropping_Button.pack(side=TOP, fill=BOTH)
-
 
     def Rayleigh_Noise(self): #test with a = -19 and b = 466
 

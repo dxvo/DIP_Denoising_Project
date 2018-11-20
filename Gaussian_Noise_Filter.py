@@ -75,6 +75,12 @@ class Gaussian(tk.Tk):
         self.input_window.destroy()
         #print("H and W saved" )
 
+    def full_contrast_stretch(self, image):
+        min_pixel = np.min(image)
+        max_pixel = np.max(image)
+        image = np.uint8(255 / (max_pixel - min_pixel) * (image - min_pixel) + 0.5)
+        return image
+
     def arithmetic_mean(self):
         #This is getting user input
         self.input_window = tk.Toplevel()
@@ -117,10 +123,12 @@ class Gaussian(tk.Tk):
                 image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
                 filtered_image[h, w] = 1 / (self.filter_h * self.filter_w) * np.sum(image_slice)
 
+        result_filtered_image = self.full_contrast_stretch(filtered_image)
+
         output_dir = 'Filtered_Image/'
         self.filtered_path = output_dir + 'Arithmetic_Result' + str(self.filter_h) + "x" + str(self.filter_w) + ".png"
         #filtered_path = output_dir + 'Arithmetic_Result' + ".png"
-        cv2.imwrite(self.filtered_path, filtered_image)
+        cv2.imwrite(self.filtered_path, result_filtered_image)
 
         #------ Now displaying image
         self.result_frame = tk.Toplevel()
