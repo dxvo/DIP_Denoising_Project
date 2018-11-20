@@ -12,6 +12,7 @@ import tkinter as tk
 import cv2
 import numpy as np
 import os
+from Gaussian_Noise_Filter import Gaussian
 
 
 class Gaussian_Cropping(tk.Tk):
@@ -100,8 +101,15 @@ class Gaussian_Cropping(tk.Tk):
         self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25))
         self.button2.pack()
 
+        self.button3 = Button(self.frame, text="Apply Filter", relief="sunken", command=self.apply_filter, font=(" ", 25),width = 16)
+        self.button3.pack()
+
+
         #self.quit()
 
+    def apply_filter(self):
+        self.destroy()
+        Gaussian()
 
     def compute_statistic(self):
         #region_path = Image.open("Cropped/Cropped_Gaussian_Image.png")

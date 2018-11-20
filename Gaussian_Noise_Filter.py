@@ -8,7 +8,8 @@ import cv2
 import numpy as np
 from numpy import *
 import restart
-from crop import *
+#from crop import *
+
 
 class Gaussian(tk.Tk):
     def __init__(self):
