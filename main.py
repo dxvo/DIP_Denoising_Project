@@ -20,6 +20,11 @@ from crop import  *
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
+
+        self.noise_prob = None
+        self.a = None
+        self.b = None
+
         self.title("IMAGE RESTORATION")
         #self.geometry("550x550")
         self.configure(background='black')
@@ -117,7 +122,57 @@ class Application(tk.Tk):
         Image_Cropping_Button.pack(side=TOP, fill=BOTH)
 
 
+    #this is to get user noise input
+    def get_noise_parameter(self,noise_type):
+        if (noise_type == "salt" or noise_type == "peppers"):
+            self.noise_prob = float(self.my_prob_entry.get())
+
+        elif (noise_type == "rayleigh" or noise_type == "gamma"):
+            self.a = float((self.my_a_entry.get()).replace(',',''))
+            self.b = float((self.my_b_entry.get()).replace(',',''))
+
+        self.update()
+        self.input_window.destroy()
+
+    def get_noise_parameters(self, noise_type):
+        self.input_window = tk.Toplevel()
+        self.input_window.title("Noise Density")
+        if(noise_type == "salt" or noise_type == "peppers" ):
+            label = tk.Label(self.input_window, text=" Noise Parameters", font=(" ", 20))
+            label.grid(row=0, column=1)
+            probability_density = tk.Label(self.input_window, text="Probability:")
+            # width = tk.Label(self.input_window, text="weight:")
+            probability_density.grid(row=1, column=0, sticky=W)
+            # width.grid(row=2, column=0, sticky=W)
+            self.my_prob_entry = tk.Entry(self.input_window)
+            self.my_prob_entry.grid(row=1, column=1)
+
+            my_button = tk.Button(self.input_window, text="Submit", command= lambda:self.get_noise_parameter(noise_type))
+            my_button.grid(row=3, column=1)
+            self.wait_window(self.input_window)
+
+        elif(noise_type == "rayleigh" or noise_type == "gamma" ):
+
+            label = tk.Label(self.input_window, text=" Noise Parameters", font=(" ", 20))
+            label.grid(row=0, column=1)
+            a_label = tk.Label(self.input_window, text="Displacement a:")
+            b_label = tk.Label(self.input_window, text="Displacement b:")
+            a_label.grid(row=1, column=0, sticky=W)
+            b_label.grid(row=2, column=0, sticky=W)
+            self.my_a_entry = tk.Entry(self.input_window)
+            self.my_a_entry.grid(row=1, column=1)
+            self.my_b_entry = tk.Entry(self.input_window)
+            self.my_b_entry.grid(row=2, column=1)
+            my_button = tk.Button(self.input_window, text="Submit", command= lambda:self.get_noise_parameter(noise_type))
+            my_button.grid(row=3, column=1)
+            self.wait_window(self.input_window)
+
+
+
     def Salt_Noise(self):
+
+        self.get_noise_parameters("salt")
+
         self.noise_window = tk.Toplevel()
         self.noise_window.title("Salt Noise Image")
 
@@ -126,9 +181,9 @@ class Application(tk.Tk):
         cols = self.img.height()
 
         input_image = self.pilImage
-        prob = 0.1
+        #self.noise_prob = 0.2
         noise_salt = np.random.randint(0, 256, (rows, cols))
-        noise_salt = np.where(noise_salt < prob * 256, 255, 0)
+        noise_salt = np.where(noise_salt < self.noise_prob * 256, 255, 0)
         #input_image.astype("float")
         noise_salt.astype("float")
 
@@ -159,6 +214,8 @@ class Application(tk.Tk):
 
     def Peppers_Noise(self):
 
+        self.get_noise_parameters("peppers")
+
         self.noise_window = tk.Toplevel()
         self.noise_window.title("Peppers Noise Image")
 
@@ -167,9 +224,9 @@ class Application(tk.Tk):
         cols = self.img.height()
 
         input_image = self.pilImage
-        prob = 0.1
+        #prob = 0.1
         noise_pepper = np.random.randint(0, 256, (rows, cols))
-        noise_pepper = np.where(noise_pepper < prob * 256, -255, 0)
+        noise_pepper = np.where(noise_pepper < self.noise_prob * 256, -255, 0)
         #input_image.astype("float")
         noise_pepper.astype("float")
 
@@ -238,7 +295,9 @@ class Application(tk.Tk):
         Image_Cropping_Button.pack(side=TOP, fill=BOTH)
 
 
-    def Rayleigh_Noise(self):
+    def Rayleigh_Noise(self): #test with a = -19 and b = 466
+
+        self.get_noise_parameters("rayleigh")
         self.noise_window = tk.Toplevel()
         self.noise_window.title("Rayleigh Noise Image")
 
@@ -247,13 +306,13 @@ class Application(tk.Tk):
         cols = self.img.height()
         input_image = self.pilImage
 
-        a = -19  # mean=a+sqrt(pi*b/4)=0, variance=b*(4-pi)/4=pow(20,2), a=-38, b=1864
-        b = 466  # mean=0, variance=10, a=-19, b=466
+        a = self.a
+        b = self.b
+        #a = -19  # mean=a+sqrt(pi*b/4)=0, variance=b*(4-pi)/4=pow(20,2), a=-38, b=1864
+        #b = 466  # mean=0, variance=10, a=-19, b=466
         noise_rayleigh = a + np.power((-b * np.log(1 - np.random.rand(rows, cols))), 0.5)
-
         input_image_added_noise = input_image + noise_rayleigh
         input_image_added_noise = np.uint8(np.where(input_image_added_noise < 0, 0, np.where(input_image_added_noise > 255, 255, input_image_added_noise)))
-
 
         output_dir = 'Noise/'
         Rayleigh_noise_image = output_dir + 'Rayleigh_Noise' + ".png"
@@ -276,17 +335,21 @@ class Application(tk.Tk):
         Filter_Button = Button(self.noise_window, text="Select Filter", fg="blue", font=("", 20), command=self.rayleigh)
         Filter_Button.pack(side=TOP, fill=BOTH)
 
-    def Gamma_Noise(self):
+    def Gamma_Noise(self): #test with
+
+        self.get_noise_parameters("gamma")
+
         self.noise_window = tk.Toplevel()
         self.noise_window.title("Gamma Noise Image")
-
         np.random.seed(1)
         rows = self.img.width()
         cols = self.img.height()
         input_image = self.pilImage
 
-        a = 0.1  # mean=b/a=50, variance=sqrt(b/pow(a,2))=22.3
-        b = 5
+        #a = 0.1  # mean=b/a=50, variance=sqrt(b/pow(a,2))=22.3
+        #b = 5
+        a = self.a
+        b = int(self.b)
 
         noise_gamma = np.zeros((rows, cols))
         for j in range(b):
@@ -294,7 +357,6 @@ class Application(tk.Tk):
 
         input_image_added_noise = input_image + noise_gamma
         input_image_added_noise = np.uint8(np.where(input_image_added_noise < 0, 0, np.where(input_image_added_noise > 255, 255, input_image_added_noise)))
-
 
         output_dir = 'Noise/'
         Gamma_noise_image = output_dir + 'Gamma_Noise' + ".png"
