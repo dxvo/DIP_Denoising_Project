@@ -207,7 +207,7 @@ class Application(tk.Tk):
 
         input_image = self.pilImage
 
-        noise_uniform = np.random.randint(-10, 10, (rows, cols))
+        noise_uniform = np.random.randint(-30, 30, (rows, cols))
         noise_uniform.astype("float")
         input_image_added_noise = input_image + noise_uniform
         input_image_added_noise = np.uint8(np.where(input_image_added_noise < 0, 0, np.where(input_image_added_noise > 255, 255, input_image_added_noise)))
@@ -226,7 +226,6 @@ class Application(tk.Tk):
         uniform_noise_image_label = Label(self.noise_window, image=image_add_uniform_noise)
         uniform_noise_image_label.image = image_add_uniform_noise  # to keep reference
         uniform_noise_image_label.pack(side=LEFT)
-
 
 
         Go_Back_Button = Button(self.noise_window, text="UNDO", fg="red", font=("", 20), highlightbackground='gray',command=self.noise_window.destroy)
