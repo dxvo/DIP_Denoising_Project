@@ -8,6 +8,7 @@ import cv2
 import numpy as np
 from numpy import *
 import restart
+from crop import *
 
 class Gaussian(tk.Tk):
     def __init__(self):
@@ -18,8 +19,8 @@ class Gaussian(tk.Tk):
         self.title("GAUSSIAN NOISE FILTERING")
         self.configure(background='black')
 
-        image_path = "Noise/Gaussian_Noise.png"
-        self.PIL_image = Image.open(image_path)
+        self.image_path = "Noise/Gaussian_Noise.png"
+        self.PIL_image = Image.open(self.image_path)
         self.image_noise = ImageTk.PhotoImage(self.PIL_image)
 
         noise_image_label = Label(self, image=self.image_noise)
@@ -65,8 +66,8 @@ class Gaussian(tk.Tk):
     def print(self):
         print("hello")
     def arithmetic_mean(self):
-        self.filter_h = 5
-        self.filter_w = 5
+        self.filter_h = 10
+        self.filter_w = 10
         pad_h = int(1 / 2 * (self.filter_h - 1))  #think there should be +.5
         pad_w = int(1 / 2 * (self.filter_w - 1))
         image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
@@ -84,34 +85,34 @@ class Gaussian(tk.Tk):
                 filtered_image[h, w] = 1 / (self.filter_h * self.filter_w) * np.sum(image_slice)
 
         output_dir = 'Filtered_Image/'
-        #filtered_path = output_dir + 'Arithmetic_Result' + str(self.filter_h) + "x" + str(self.filter_w) + ".png"
-        filtered_path = output_dir + 'Arithmetic_Result' + ".png"
-        cv2.imwrite(filtered_path, filtered_image)
+        self.filtered_path = output_dir + 'Arithmetic_Result' + str(self.filter_h) + "x" + str(self.filter_w) + ".png"
+        #filtered_path = output_dir + 'Arithmetic_Result' + ".png"
+        cv2.imwrite(self.filtered_path, filtered_image)
 
         #------ Now displaying image
         self.result_frame = tk.Toplevel()
         self.result_frame.title("Displaying Result")
 
-        before_filter_image= Image.open("Noise/Gaussian_Noise.png")
+        before_filter_image= Image.open(str(self.image_path))
         before_filter_image_tk = ImageTk.PhotoImage(before_filter_image)
-
         before_filter_label = Label(self.result_frame, image=before_filter_image_tk)
         before_filter_label.img = before_filter_image_tk
         before_filter_label.pack(side=LEFT)
 
-        after_filter_image = Image.open('Filtered_Image/Arithmetic_Result.png')
+        after_filter_image = Image.open(str(self.filtered_path))
         after_filter_image_tk = ImageTk.PhotoImage(after_filter_image)
-
         after_filter_label = Label(self.result_frame, image=after_filter_image_tk)
         after_filter_label.img = after_filter_image_tk
         after_filter_label.pack(side=LEFT)
 
-        button1 = Button(self.result_frame, text="Undo", fg="blue", font=("", 20), command=self.close)
+        button1 = Button(self.result_frame, text="Undo", fg="blue", font=("", 20), command=self.result_frame.destroy)
         button1.pack(side=BOTTOM,fill=BOTH)
 
+        button2 = Button(self.result_frame, text="Compute Histogram", fg="blue", font=("", 20), command=self.compute_histogram)
+        button2.pack(side=TOP, fill=BOTH)
 
-    def close(self):
-        self.result_frame.destroy()
+    def compute_histogram(self):
+        print("NOT DONE YET")
 
 
 

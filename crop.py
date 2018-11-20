@@ -11,6 +11,8 @@ from matplotlib.figure import Figure
 import tkinter as tk
 import cv2
 import numpy as np
+import os
+
 
 class Gaussian_Cropping(tk.Tk):
     def __init__(self):
@@ -95,8 +97,9 @@ class Gaussian_Cropping(tk.Tk):
         cropped_image_label = Label(self, image=self.cropped_image)
         cropped_image_label.pack(side=LEFT)
 
-        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25), )
+        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25))
         self.button2.pack()
+
         #self.quit()
 
 
@@ -114,9 +117,9 @@ class Gaussian_Cropping(tk.Tk):
         # img = cv2.imread("uniform.png",0)
         rows, cols = img.shape
         # noise = np.random.randint(-50, 50, (rows, cols)) #uniform
-        noise = np.random.normal(0, 30, (rows, cols))  # gaussian
+        #noise = np.random.normal(0, 30, (rows, cols))  # gaussian
 
-        img = img + noise
+        #img = img + noise
         h = np.histogram(img, bins=np.arange(256), density=True)
 
         mean_value = 0
@@ -149,6 +152,12 @@ class Gaussian_Cropping(tk.Tk):
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         f.savefig("Cropped/histogram/Gaussian_Histogram.png")
         #tk.mainloop()
+        self.button3 = Button(self.frame, text="Quit/Restart", relief="sunken", command=self.restart_program,font=(" ", 25),width = 16)
+        self.button3.pack()
+
+    def restart_program(self):
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
 
 class Uniform_Cropping(tk.Tk):
     def __init__(self):
@@ -235,11 +244,14 @@ class Uniform_Cropping(tk.Tk):
 
         self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25), )
         self.button2.pack()
+
+        self.button3 = Button(self.frame, text="Quit/Restart", relief="sunken", command=self.restart_program, font=(" ", 25),width = 16 )
+        self.button3.pack(side = BOTTOM)
+
         #self.quit()
 
 
     def compute_statistic(self):
-
         self.title("Noise_Region_Histogram")
         img = cv2.imread('Cropped/Cropped_Uniform_Image.png',0)
         # img = cv2.imread("uniform.png",0)
@@ -280,3 +292,7 @@ class Uniform_Cropping(tk.Tk):
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         f.savefig("Cropped/histogram/Uniform_Histogram.png")
 
+
+    def restart_program(self):
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
