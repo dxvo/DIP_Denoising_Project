@@ -13,6 +13,7 @@ import cv2
 import numpy as np
 import os
 from Gaussian_Noise_Filter import Gaussian
+from Uniform_Noise_Filter import Uniform
 
 
 class Gaussian_Cropping(tk.Tk):
@@ -111,22 +112,9 @@ class Gaussian_Cropping(tk.Tk):
         Gaussian()
 
     def compute_statistic(self):
-        #region_path = Image.open("Cropped/Cropped_Gaussian_Image.png")
-        #region_array = np.array(region_path)
-
-        #cropped_image_array = np.uint8(np.where(region_array < 0, 0, np.where(region_array > 255, 255, region_array)))
-        #output_hist, mean_value, var_value = ne.estimating(cropped_image_array)
-        #print("Mean is {}, Variance is {}".format(mean_value, var_value))
-        #print("hello")
 
         self.title("Noise_Region_Histogram")
         img = cv2.imread('Cropped/Cropped_Gaussian_Image.png', 0)
-        # img = cv2.imread("uniform.png",0)
-        rows, cols = img.shape
-        # noise = np.random.randint(-50, 50, (rows, cols)) #uniform
-        #noise = np.random.normal(0, 30, (rows, cols))  # gaussian
-
-        #img = img + noise
         h = np.histogram(img, bins=np.arange(256), density=True)
 
         mean_value = 0
@@ -169,6 +157,10 @@ class Gaussian_Cropping(tk.Tk):
         python = sys.executable
         os.execl(python, python, *sys.argv)
 
+
+#-----------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
+
 class Uniform_Cropping(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -188,7 +180,6 @@ class Uniform_Cropping(tk.Tk):
 
         self.button1 = Button(self.frame, text = "Click to Crop Region", relief = "sunken", command = self.crop, font = (" ", 25),)
         self.button1.pack()
-
 
         self.rect = None
         self.start_x = None
@@ -252,11 +243,8 @@ class Uniform_Cropping(tk.Tk):
         cropped_image_label = Label(self, image=self.cropped_image)
         cropped_image_label.pack(side=LEFT)
 
-        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25), )
-        self.button2.pack()
-
-        self.button3 = Button(self.frame, text="Quit/Restart", relief="sunken", command=self.restart_program, font=(" ", 25),width = 16 )
-        self.button3.pack(side = BOTTOM)
+        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25),fg = "blue" )
+        self.button2.pack(side = LEFT)
 
         #self.quit()
 
@@ -301,6 +289,16 @@ class Uniform_Cropping(tk.Tk):
         toolbar.update()
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         f.savefig("Cropped/histogram/Uniform_Histogram.png")
+
+        self.button4 = Button(self.frame, text="Apply Filter", relief="sunken", command=self.apply_filter, font=(" ", 25), fg = "blue")
+        self.button4.pack(side = LEFT)
+
+        self.button3 = Button(self.frame, text="Quit/Restart", relief="sunken", command=self.restart_program, font=(" ", 25),fg = "blue" )
+        self.button3.pack(side = LEFT)
+
+    def apply_filter(self):
+        self.destroy()
+        Uniform()
 
 
     def restart_program(self):
