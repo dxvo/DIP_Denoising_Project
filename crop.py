@@ -67,14 +67,13 @@ class Gaussian_Cropping(tk.Tk):
         # expand rectangle as you drag the mouse
         self.canvas.coords(self.rect, self.start_x, self.start_y, curX, curY)
 
-
     def on_button_release(self, event):
         self.end_x = event.x
         self.end_y = event.y
         self.area = (self.start_x,self.start_y, self.end_x,self.end_y)
         #pass
 
-    def crop(self):
+    def crop(self,image_path):
         self.canvas.destroy()
         self.button1.destroy()
         #self.frame.destroy()
@@ -101,9 +100,6 @@ class Gaussian_Cropping(tk.Tk):
 
         self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25),fg = "blue")
         self.button2.pack(side = LEFT)
-
-
-
 
         #self.quit()
 
@@ -304,3 +300,7 @@ class Uniform_Cropping(tk.Tk):
     def restart_program(self):
         python = sys.executable
         os.execl(python, python, *sys.argv)
+
+
+#-----------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
