@@ -9,7 +9,7 @@ from PIL import Image, ImageTk
 import numpy as np
 from numpy import *
 from crop import Cropping
-#from Filtering import Filter
+from Filtering import Filter
 
 class Application(tk.Tk):
     def __init__(self):
@@ -177,8 +177,8 @@ class Application(tk.Tk):
         Image_Cropping_Button = Button(self.noise_window, text="Noise Analysis", fg="Red", font=("", 22),command=lambda: self.noise_analysis(self.path))
         Image_Cropping_Button.pack(side=TOP, fill=BOTH)
 
-        #Filter_Button = Button(self.noise_window, text="Filter Selection", fg="blue", font=("", 22), command= self.Filtering)
-        #Filter_Button.pack(side=TOP, fill=BOTH)
+        Filter_Button = Button(self.noise_window, text="Filter Selection", fg="blue", font=("", 22), command= self.Filtering)
+        Filter_Button.pack(side=TOP, fill=BOTH)
 
 
     def get_noise_parameters(self, noise_type):
@@ -255,12 +255,11 @@ class Application(tk.Tk):
         self.update()
         self.input_window.destroy()
 
-    """
+
     def Filtering(self):
-    self.noise_window.destroy()
-    self.destroy()
-    Filter(self.path)
-    """
+        self.noise_window.destroy()
+        self.destroy()
+        Filter(self.path)
 
 
     def restart_program(self):

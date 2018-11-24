@@ -49,28 +49,25 @@ class Filter(tk.Tk):
                                              command=lambda: self.contraharmonic_mean("contraharmonic"))
         self.contra_harmonic_button.pack(side=TOP, fill=BOTH)
 
-        self.median_button = Button(self, text="Median Filter", fg="blue", font=("", 20), command=self.print)
-        self.median_button.pack(side=TOP, fill=BOTH)
-
-        self.min_button = Button(self, text="Min Filter", fg="blue", font=("", 20), command=self.print)
+        self.min_button = Button(self, text="Min Filter", fg="blue", font=("", 20), command=lambda:  self.min_filter("min"))
         self.min_button.pack(side=TOP, fill=BOTH)
 
-        self.max_button = Button(self, text="Max Filter", fg="blue", font=("", 20), command=self.print)
+        self.max_button = Button(self, text="Max Filter", fg="blue", font=("", 20), command=lambda: self.max_filter("max"))
         self.max_button.pack(side=TOP, fill=BOTH)
+
+        self.median_button = Button(self, text="Median Filter", fg="blue", font=("", 20),command=lambda: self.median_filter("median"))
+        self.median_button.pack(side=TOP, fill=BOTH)
+
+        self.trimmed_button = Button(self, text="Alpha Trimmed Filter", fg="blue", font=("", 20),command=lambda: self.alpha_trim("trim"))
+        self.trimmed_button.pack(side=TOP, fill=BOTH)
+
 
         self.adaptive_button = Button(self, text="Adaptive Filter", fg="blue", font=("", 20), command=self.print)
         self.adaptive_button.pack(side=TOP, fill=BOTH)
 
-        self.trimmed_button = Button(self, text="Alpha Trimmed Mean Filter", fg="blue", font=("", 20), command=self.print)
-        self.trimmed_button.pack(side=TOP, fill=BOTH)
 
         self.restart_button = Button(self, text="Restart Program", fg="RED", font=("", 20), highlightbackground='Yellow', command=self.restart)
         self.restart_button.pack(side=BOTTOM)
-
-
-
-    def print(self):
-        print("hello")
 
 
     def arithmetic_mean(self,filter_type):
@@ -182,10 +179,101 @@ class Filter(tk.Tk):
         self.save_image()
         self.display_image()
 
+    def min_filter(self,filter_type):
+        self.filter_type = filter_type
+        self.get_filter_size()
+        pad_h = int(1 / 2 * (self.filter_h - 1))  # think there should be +.5
+        pad_w = int(1 / 2 * (self.filter_w - 1))
+        image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
+        filtered_image = np.zeros((self.height, self.width))
+
+        for h in range(self.height):
+            for w in range(self.width):
+                vert_start = h
+                vert_end = h + self.filter_h
+                horiz_start = w
+                horiz_end = w + self.filter_w
+                image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
+                filtered_image[h, w] = np.amin(image_slice)
+
+        self.filtered_image_result = self.full_contrast_stretch(filtered_image)
+        self.save_image()
+        self.display_image()
+
+    def max_filter(self,filter_type):
+        self.filter_type = filter_type
+        self.get_filter_size()
+        pad_h = int(1 / 2 * (self.filter_h - 1))  # think there should be +.5
+        pad_w = int(1 / 2 * (self.filter_w - 1))
+        image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
+        filtered_image = np.zeros((self.height, self.width))
+
+        for h in range(self.height):
+            for w in range(self.width):
+                vert_start = h
+                vert_end = h + self.filter_h
+                horiz_start = w
+                horiz_end = w + self.filter_w
+                image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
+                filtered_image[h, w] = np.amax(image_slice)
+
+        self.filtered_image_result = self.full_contrast_stretch(filtered_image)
+        self.save_image()
+        self.display_image()
+
+    def median_filter(self,filter_type):
+        self.filter_type = filter_type
+        self.get_filter_size()
+        pad_h = int(1 / 2 * (self.filter_h - 1))  # think there should be +.5
+        pad_w = int(1 / 2 * (self.filter_w - 1))
+        image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
+        filtered_image = np.zeros((self.height, self.width))
+
+        for h in range(self.height):
+            for w in range(self.width):
+                vert_start = h
+                vert_end = h + self.filter_h
+                horiz_start = w
+                horiz_end = w + self.filter_w
+                image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
+                filtered_image[h, w] = np.median(image_slice)
+
+        self.filtered_image_result = self.full_contrast_stretch(filtered_image)
+        self.save_image()
+        self.display_image()
+
+    def alpha_trim(self,filter_type):
+        self.filter_type = filter_type
+        self.get_filter_size()
+
+        if ((self.filter_h * self.filter_w - self.order) < 0):
+            print("Order must be smaller than filter size\n")
+            restart.restart_program(self)
+
+        t = self.filter_h * self.filter_w - self.order
+        pad_h = int(1 / 2 * (self.filter_h - 1))  # think there should be +.5
+        pad_w = int(1 / 2 * (self.filter_w - 1))
+        image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
+        filtered_image = np.zeros((self.height, self.width))
+
+        for h in range(self.height):
+            for w in range(self.width):
+                vert_start = h
+                vert_end = h + self.filter_h
+                horiz_start = w
+                horiz_end = w + self.filter_w
+                image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
+                filtered_image[h, w] = np.uint8(1/t * np.sum(image_slice))
+
+        self.filtered_image_result = self.full_contrast_stretch(filtered_image)
+        self.save_image()
+        self.display_image()
+
 
     def compute_histogram(self):
         self.destroy()
         After_Analysis(self.filter_image_path)
+
     def display_image(self):
         self.result_frame = tk.Toplevel()
         self.result_frame.title("Restored Image")
@@ -209,10 +297,11 @@ class Filter(tk.Tk):
 
         button2 = Button(self.result_frame, text="Compute Histogram", fg="blue", font=("", 20),command=self.compute_histogram)
         button2.pack(side=TOP, fill=BOTH)
+
     def get_hwo(self):
         self.filter_h = int(self.my_entry_h.get())
         self.filter_w = int(self.my_entry_w.get())
-        if(self.filter_type == "contraharmonic"):
+        if(self.filter_type == "contraharmonic" or self.filter_type == "trim"):
             self.order = int(self.my_entry_order.get())
         self.update()
         self.input_window.destroy()
@@ -223,6 +312,7 @@ class Filter(tk.Tk):
         max_pixel = np.max(image)
         image = np.uint8(255 / (max_pixel - min_pixel) * (image - min_pixel) + 0.5)
         return image
+
     def get_filter_size(self):
 
         # This is getting user input
@@ -247,7 +337,7 @@ class Filter(tk.Tk):
         self.my_entry_w.grid(row=2, column=1)
 
 
-        if(self.filter_type == "contraharmonic"):
+        if(self.filter_type == "contraharmonic" or self.filter_type == "trim" ):
             order = tk.Label(self.input_window, text="order:")
             order.grid(row=3, column=0, sticky=W)
             self.my_entry_order = tk.Entry(self.input_window)
@@ -263,5 +353,9 @@ class Filter(tk.Tk):
         self.filter_image_path = output_dir + self.image_name + ".png"
         # filtered_path = output_dir + 'Arithmetic_Result' + ".png"
         cv2.imwrite(self.filter_image_path, self.filtered_image_result)
+
     def restart(self):
         restart.restart_program(self)
+
+    def print(self):
+        print("hello")
