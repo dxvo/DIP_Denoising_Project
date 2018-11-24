@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5f76d38-e91f-4f8f-8532-fbd5c53c0f73" name="Default Changelist" comment="(">
-      <change beforePath="$PROJECT_DIR$/Noise/Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/Noise/Gaussian_Noise.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Restored/Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/Restored/Gaussian_Noise.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/histogram/Cropped_Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/histogram/Cropped_Gaussian_Noise.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/histogram/Restored_Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/histogram/Restored_Gaussian_Noise.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/Filtering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noise/Uniform_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/Noise/Uniform_Noise.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,25 +67,25 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="md" value="1" />
-          <entry key="png" value="96" />
+          <entry key="png" value="97" />
           <entry key="py" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="96" />
+          <entry key="Image" value="97" />
           <entry key="Markdown" value="1" />
           <entry key="Python" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="7093" />
+          <entry key="py" value="7440" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="7093" />
+          <entry key="Python" value="7440" />
         </counts>
       </usages-collector>
     </session>
@@ -122,17 +120,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Filtering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
+            <state relative-caret-position="327">
+              <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#3135#4026#0" />
+                <element signature="e#4092#5215#0" />
+                <element signature="e#5266#6461#0" />
+                <element signature="e#3843#3904#0" />
                 <element signature="e#3929#5105#0" />
                 <element signature="e#5137#5322#0" />
                 <element signature="e#5375#5539#0" />
-                <element signature="e#5630#6455#0" />
                 <element signature="e#6491#6851#0" />
               </folding>
             </state>
@@ -142,23 +143,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Post_Filter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="208" column="42" lean-forward="true" selection-start-line="208" selection-start-column="42" selection-end-line="208" selection-end-column="42" />
+            <state relative-caret-position="432">
+              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="126">
-                <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-              </first_editor>
-              <second_editor />
             </state>
           </provider>
         </entry>
@@ -218,19 +207,19 @@
         <option value="$PROJECT_DIR$/noise_analysis.py" />
         <option value="$PROJECT_DIR$/Uniform_Noise_Filter.py" />
         <option value="$PROJECT_DIR$/Gaussian_Noise_Filter.py" />
-        <option value="$PROJECT_DIR$/Filtering.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/crop.py" />
         <option value="$PROJECT_DIR$/Post_Filter.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Filtering.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="93" />
-    <option name="y" value="42" />
-    <option name="width" value="1288" />
-    <option name="height" value="677" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="7" />
+    <option name="y" value="23" />
+    <option name="width" value="1384" />
+    <option name="height" value="791" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -424,21 +413,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="34" width="1182" height="692" extended-state="0" />
+    <frame x="7" y="23" width="1384" height="791" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27719298" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.111773476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3236715" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23833333" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24320458" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39786586" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3290735" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.17552336" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.25608012" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3290735" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -452,7 +441,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Peppers.py" />
     <entry file="file://$PROJECT_DIR$/load_image.py" />
     <entry file="file://$PROJECT_DIR$/Rayleigh_Noise_Filter.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -615,21 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Filtering.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <element signature="e#3929#5105#0" />
-            <element signature="e#5137#5322#0" />
-            <element signature="e#5375#5539#0" />
-            <element signature="e#5630#6455#0" />
-            <element signature="e#6491#6851#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crop.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -640,23 +613,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Screen Shot 2018-11-24 at 1.23.04 AM.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="126">
+            <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Post_Filter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="208" column="42" lean-forward="true" selection-start-line="208" selection-start-column="42" selection-end-line="208" selection-end-column="42" />
+        <state relative-caret-position="432">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="126">
-            <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/Filtering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#3135#4026#0" />
+            <element signature="e#4092#5215#0" />
+            <element signature="e#5266#6461#0" />
+            <element signature="e#3843#3904#0" />
+            <element signature="e#3929#5105#0" />
+            <element signature="e#5137#5322#0" />
+            <element signature="e#5375#5539#0" />
+            <element signature="e#6491#6851#0" />
+          </folding>
         </state>
       </provider>
     </entry>
