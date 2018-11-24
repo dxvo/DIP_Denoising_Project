@@ -9,20 +9,20 @@ import tkinter as tk
 import cv2
 import numpy as np
 import os
-from Filtering import Filter
 
-
-
-class Cropping(tk.Tk):
+class After_Analysis(tk.Tk):
     def __init__(self,path):
         super().__init__(path)
-        self.path = path #this is the original image path
+        self.path = path #this is path of restore
         split_path = self.path.split(os.sep)
         self.image_name  = split_path[1].split(".")[0] #this should give image name noise/gaussian.pnb - gaussan
 
         #self.noise_type = noise_type
         self.cropped_path = None
-        self.crop_hist_path = None
+        self.before_hist_path = "histogram/" + "Cropped_" + self.image_name + ".png"
+        self.degraded_path = "Noise/" + self.image_name + ".png"
+
+        self.after_hist_path = None
         self.x = self.y = 0
         self.title("Select A Flat Image Region")
         self.canvas = tk.Canvas(self, width=512, height=512, cursor="cross", bg = "Black", bd = 0, highlightthickness=0)
@@ -50,7 +50,6 @@ class Cropping(tk.Tk):
 
     #Display image from copy folder on canvas
     def _display_image(self):
-
         #image_path = "Noise/Gaussian_Noise.png"
         self.im = Image.open(self.path)
         self.tk_im = ImageTk.PhotoImage(self.im)
@@ -128,15 +127,15 @@ class Cropping(tk.Tk):
         f = Figure(figsize=(3.5, 3.5), dpi=100)
         ax = f.add_subplot(111)  # this is the plot element
 
-        #ax.set_xlim([mean_value - 1.1 * var_value, mean_value + 1.1 * var_value])
-        if(self.image_name == "Salt_Noise"):
-            ax.set_xlim([mean_value , 260 ])
-        elif(self.image_name == "Peppers_Noise"):
-            ax.set_xlim([0, mean_value - 10])
-        else:
-            ax.set_xlim([mean_value - 1.1 * var_value, mean_value + 1.1 * var_value])
+        ax.set_xlim([mean_value - 1.1 * var_value, mean_value + 1.1 * var_value])
+        #if(self.image_name == "Salt_Noise"):
+            #ax.set_xlim([mean_value , 260 ])
+        #elif(self.image_name == "Peppers_Noise"):
+            #ax.set_xlim([0, mean_value - 10])
+        #else:
+            #ax.set_xlim([mean_value - 1.1 * var_value, mean_value + 1.1 * var_value])
         #ax.set_xlim([0,257])
-        ax.set_title("Degraded Histogram", fontsize=16)
+        ax.set_title("Restored Histogram", fontsize=16)
 
         x_axes = np.arange(imean - ivar, imean + ivar, (2 * ivar) / len(h[0]))
         y_axes = np.arange(0, np.amax(h[0]))
@@ -150,40 +149,69 @@ class Cropping(tk.Tk):
         toolbar.update()
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
 
-        self.crop_hist_path = "histogram/" + "Cropped_" + self.image_name + ".png"
-        f.savefig(self.crop_hist_path)
+        self.after_hist_path = "histogram/" + "Restored_" + self.image_name + ".png"
+        f.savefig(self.after_hist_path)
 
         #tk.mainloop()
         self.button3 = Button(self.frame, text="Quit/Restart", relief="sunken", command=self.restart_program,font=(" ", 25),fg = "red")
         self.button3.pack(side = RIGHT)
-        self.button4 = Button(self.frame, text="Apply Filter", relief="sunken", command=self.apply_filter, font=(" ", 25), fg="blue")
-        self.button4.pack(side=LEFT)
+
+        self.button4 = Button(self.frame, text="Compare Histogram", relief="sunken", command=self.compare_histogram,font=(" ", 25), fg="blue")
+        self.button4.pack(side=RIGHT)
+
         self.button5 = Button(self.frame, text="Undo", relief="sunken", command=self.undo,font=(" ", 25), fg="blue")
         self.button5.pack(side=LEFT)
 
+
+    def compare_histogram(self):
+        self.compare_window = tk.Toplevel()
+
+        #This is for image
+        self.degraded = Image.open(self.degraded_path)
+        self.restored = Image.open(self.path)
+        self.degraded = self.degraded.resize((330, 330), Image.ANTIALIAS)
+        self.restored= self.restored.resize((330, 330), Image.ANTIALIAS)
+
+        self.degraded_img = ImageTk.PhotoImage(self.degraded)
+        self.restored_img = ImageTk.PhotoImage(self.restored)
+
+        degraded_img_label = Label(self.compare_window, image=self.degraded_img )
+        #degraded_img_label.pack(side=LEFT)
+        degraded_img_label.grid(row = 0, column = 0)
+
+        restored_img_label = Label(self.compare_window, image=self.restored_img)
+        #restored_img_label.pack(side=LEFT)
+        restored_img_label.grid(row=1, column=0)
+
+        #this is histogram
+        self.before = Image.open(self.before_hist_path)
+        self.after = Image.open(self.after_hist_path)
+        #self.before = self.before.resize((300, 300))
+        #self.afte = self.afte.resize((300, 300))
+
+        self.before_hist_img = ImageTk.PhotoImage(self.before)
+        self.after_hist_img = ImageTk.PhotoImage(self.after )
+
+        before_hist_label = Label(self.compare_window, image=self.before_hist_img)
+        #before_hist_label.pack(side=LEFT)
+        before_hist_label.grid(row = 0, column = 1)
+
+        after_hist_label = Label(self.compare_window, image=self.after_hist_img)
+        #after_hist_label.pack(side=LEFT)
+        after_hist_label.grid(row=1, column=1)
+
+        self.button6 = Button(self.compare_window, text="Undo", relief="sunken", command=self.undo, font=(" ", 25), fg="blue")
+        #self.button6.pack(side=BOTTOM)
+        self.button6.grid(row=2, column=1)
+
+        self.button7 = Button(self.compare_window, text="Quit/Restart", relief="sunken", command=self.restart_program,font=(" ", 25),fg = "red")
+        #self.button7.pack(side = BOTTOM)
+        self.button7.grid(row=3, column=1)
+
     def undo(self):
         self.destroy()
-        Cropping(self.path)
+        After_Analysis(self.path)
 
-    def apply_filter(self):
-        self.destroy()
-        Filter(self.path)
-
-        """
-        if(self.image_name == "Gaussian_Noise"):
-            Gaussian()
-        elif(self.image_name == "Uniform_Noise"):
-            Uniform()
-        elif (self.image_name == "Gamma_Noise"):
-            Gamma()
-        elif (self.image_name == "Rayleigh_Noise"):
-            Rayleigh()
-        elif (self.image_name == "Salt_Noise"):
-            Salt()
-        elif (self.image_name == "Peppers_Noise"):
-            Peppers()
-
-        """
     def restart_program(self):
         python = sys.executable
         os.execl(python, python, *sys.argv)

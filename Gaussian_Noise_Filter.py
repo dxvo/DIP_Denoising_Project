@@ -10,7 +10,6 @@ from numpy import *
 import restart
 #from crop import *
 
-
 class Gaussian(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -81,32 +80,12 @@ class Gaussian(tk.Tk):
         image = np.uint8(255 / (max_pixel - min_pixel) * (image - min_pixel) + 0.5)
         return image
 
+
+
+
+
     def arithmetic_mean(self):
-        #This is getting user input
-        self.input_window = tk.Toplevel()
-        self.input_window.title("Filter Size")
-
-        label = tk.Label(self.input_window, text="Filter Dimension", font = (" ", 20))
-        label.grid(row = 0, column = 1)
-
-        height = tk.Label(self.input_window, text="Height:")
-        width = tk.Label(self.input_window, text="weight:")
-        height.grid(row=1,column=0, sticky=W)
-        width.grid(row = 2, column = 0, sticky=W)
-
-        self.my_entry_h = tk.Entry(self.input_window)
-        self.my_entry_w = tk.Entry(self.input_window)
-
-        self.my_entry_h.grid(row = 1, column = 1)
-        self.my_entry_w.grid(row = 2, column = 1)
-        my_button = tk.Button(self.input_window, text="Submit", command=self.get_hw)
-        my_button.grid(row = 3, column = 1)
-        self.wait_window(self.input_window)
-
-
-        #self.filter_h = 10
-        #self.filter_w = 10
-
+        self.get_filter_size()
         pad_h = int(1 / 2 * (self.filter_h - 1))  #think there should be +.5
         pad_w = int(1 / 2 * (self.filter_w - 1))
         image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
