@@ -125,7 +125,7 @@ class Cropping(tk.Tk):
         ivar = var_value.astype(int)
         print(imean, ivar)
 
-        f = Figure(figsize=(3.5, 3.5), dpi=100)
+        f = Figure(figsize=(4, 3.5), dpi=100)
         ax = f.add_subplot(111)  # this is the plot element
 
         #ax.set_xlim([mean_value - 1.1 * var_value, mean_value + 1.1 * var_value])

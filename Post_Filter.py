@@ -101,7 +101,7 @@ class After_Analysis(tk.Tk):
         cropped_image_label = Label(self, image=self.cropped_image)
         cropped_image_label.pack(side=LEFT)
 
-        self.button2 = Button(self.frame, text="Compute Noise Statistic", relief="sunken", command=self.compute_statistic, font=(" ", 25),fg = "blue")
+        self.button2 = Button(self.frame, text="Compute Restored Histogram", relief="sunken", command=self.compute_statistic, font=(" ", 25),fg = "blue")
         self.button2.pack(side = LEFT)
 
         #self.quit()
@@ -124,7 +124,7 @@ class After_Analysis(tk.Tk):
         ivar = var_value.astype(int)
         print(imean, ivar)
 
-        f = Figure(figsize=(3.5, 3.5), dpi=100)
+        f = Figure(figsize=(4, 3.5), dpi=100)
         ax = f.add_subplot(111)  # this is the plot element
 
         ax.set_xlim([mean_value - 1.1 * var_value, mean_value + 1.1 * var_value])

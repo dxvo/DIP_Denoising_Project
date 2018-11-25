@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5f76d38-e91f-4f8f-8532-fbd5c53c0f73" name="Default Changelist" comment="(">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/Filtering.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Noise/Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/Noise/Gaussian_Noise.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noise/Peppers_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/Noise/Peppers_Noise.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_Filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Post_Filter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Restored/Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/Restored/Gaussian_Noise.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/histogram/Cropped_Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/histogram/Cropped_Gaussian_Noise.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/histogram/Restored_Gaussian_Noise.png" beforeDir="false" afterPath="$PROJECT_DIR$/histogram/Restored_Gaussian_Noise.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,97 +20,31 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-966081017">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="26" />
-          <entry key="project.open.time.0" value="7" />
-          <entry key="project.open.time.2" value="19" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="27" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="jpg" value="9" />
-          <entry key="md" value="3" />
-          <entry key="png" value="58" />
-          <entry key="py" value="62" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Image" value="67" />
-          <entry key="Markdown" value="3" />
-          <entry key="Python" value="62" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="md" value="812" />
-          <entry key="py" value="15858" />
-          <entry key="txt" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Markdown" value="812" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="15858" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages" />
-    </session>
-    <session id="428039545">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="9" />
-          <entry key="project.open.time.0" value="4" />
-          <entry key="project.open.time.2" value="8" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="13" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="md" value="1" />
-          <entry key="png" value="98" />
-          <entry key="py" value="28" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Image" value="98" />
-          <entry key="Markdown" value="1" />
-          <entry key="Python" value="28" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="7743" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="7743" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="262" lean-forward="true" selection-start-line="262" selection-end-line="262" />
+            <state relative-caret-position="334">
+              <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#9168#12062#0" />
-                <element signature="e#12115#12692#0" />
-                <element signature="e#13286#13353#0" />
-                <element signature="e#13459#13537#0" />
+                <element signature="e#4663#5329#0" />
+                <element signature="e#5386#5997#0" />
+                <element signature="e#6057#6687#0" />
+                <element signature="e#7435#8149#0" />
+                <element signature="e#8210#8854#0" />
+                <element signature="e#9112#9246#0" />
+                <element signature="e#10273#10870#0" />
+                <element signature="e#10912#11627#0" />
+                <element signature="e#11147#11736#0" />
+                <element signature="e#11790#12367#0" />
+                <element signature="e#12447#13242#0" />
+                <element signature="e#13296#13880#0" />
+                <element signature="e#14598#15393#0" />
+                <element signature="e#13933#14510#0" />
+                <element signature="e#14546#14622#0" />
+                <element signature="e#14664#14731#0" />
               </folding>
             </state>
           </provider>
@@ -112,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="127" column="47" lean-forward="true" selection-start-line="127" selection-start-column="47" selection-end-line="127" selection-end-column="47" />
+            <state relative-caret-position="427">
+              <caret line="127" column="34" selection-start-line="127" selection-start-column="34" selection-end-line="127" selection-end-column="34" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -121,25 +62,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Filtering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="267" column="2" selection-start-line="267" selection-start-column="2" selection-end-line="267" selection-end-column="2" />
+            <state relative-caret-position="427">
+              <caret line="35" column="53" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="53" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
-                <element signature="e#3135#4026#0" />
-                <element signature="e#4092#5215#0" />
-                <element signature="e#5266#6461#0" />
-                <element signature="e#6518#8381#0" />
-                <element signature="e#8449#9317#0" />
-                <element signature="e#9459#10456#0" />
-                <element signature="e#10381#11250#0" />
-                <element signature="e#3929#5105#0" />
-                <element signature="e#9776#10033#0" />
-                <element signature="e#5375#5539#0" />
-                <element signature="e#10200#11251#0" />
-                <element signature="e#6491#6851#0" />
               </folding>
             </state>
           </provider>
@@ -148,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Post_Filter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2452">
-              <caret line="17" column="23" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="23" />
+            <state relative-caret-position="344">
+              <caret line="124" column="26" lean-forward="true" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -212,11 +141,11 @@
         <option value="$PROJECT_DIR$/noise_analysis.py" />
         <option value="$PROJECT_DIR$/Uniform_Noise_Filter.py" />
         <option value="$PROJECT_DIR$/Gaussian_Noise_Filter.py" />
-        <option value="$PROJECT_DIR$/crop.py" />
-        <option value="$PROJECT_DIR$/Post_Filter.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Post_Filter.py" />
+        <option value="$PROJECT_DIR$/crop.py" />
         <option value="$PROJECT_DIR$/Filtering.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -242,7 +171,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,15 +178,11 @@
               <item name="project" type="b2602c69:ProjectViewProjectNode" />
               <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-              <item name="Restored" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -426,20 +350,20 @@
     <frame x="7" y="23" width="1377" height="791" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13408239" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18202247" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3236715" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24320458" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39786586" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24606581" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.397711" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3290735" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.25608012" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3290735" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32904148" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -447,25 +371,7 @@
       <window_info anchor="right" id="R Packages" order="4" />
     </layout>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Rayleigh_Noise_Filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Salt_Noise_Filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-240">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cropping_function.py" />
     <entry file="file://$PROJECT_DIR$/restart.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -583,14 +489,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="83" selection-start-line="83" selection-end-line="83" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Restored/Gaussian_Noise.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/histogram/Restored_Gaussian_Noise.png">
       <provider selected="true" editor-type-id="images" />
@@ -598,9 +498,7 @@
     <entry file="file://$PROJECT_DIR$/histogram/Cropped_Gaussian_Noise.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Screen Shot 2018-11-24 at 1.23.04 AM.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../Screen Shot 2018-11-24 at 1.23.04 AM.png" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -611,10 +509,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Restored/Uniform_Noise.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Restored/Salt_Noise.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Restored/Peppers_Noise.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Restored/Gaussian_Noise.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rayleigh_Noise_Filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Filtering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="35" column="53" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Post_Filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="124" column="26" lean-forward="true" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/crop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="127" column="47" lean-forward="true" selection-start-line="127" selection-start-column="47" selection-end-line="127" selection-end-column="47" />
+        <state relative-caret-position="427">
+          <caret line="127" column="34" selection-start-line="127" selection-start-column="34" selection-end-line="127" selection-end-column="34" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
@@ -623,49 +562,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="262" lean-forward="true" selection-start-line="262" selection-end-line="262" />
+        <state relative-caret-position="334">
+          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#9168#12062#0" />
-            <element signature="e#12115#12692#0" />
-            <element signature="e#13286#13353#0" />
-            <element signature="e#13459#13537#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Post_Filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2452">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Restored/Peppers_Noise.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Filtering.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="267" column="2" selection-start-line="267" selection-start-column="2" selection-end-line="267" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <element signature="e#3135#4026#0" />
-            <element signature="e#4092#5215#0" />
-            <element signature="e#5266#6461#0" />
-            <element signature="e#6518#8381#0" />
-            <element signature="e#8449#9317#0" />
-            <element signature="e#9459#10456#0" />
-            <element signature="e#10381#11250#0" />
-            <element signature="e#3929#5105#0" />
-            <element signature="e#9776#10033#0" />
-            <element signature="e#5375#5539#0" />
-            <element signature="e#10200#11251#0" />
-            <element signature="e#6491#6851#0" />
+            <element signature="e#4663#5329#0" />
+            <element signature="e#5386#5997#0" />
+            <element signature="e#6057#6687#0" />
+            <element signature="e#7435#8149#0" />
+            <element signature="e#8210#8854#0" />
+            <element signature="e#9112#9246#0" />
+            <element signature="e#10273#10870#0" />
+            <element signature="e#10912#11627#0" />
+            <element signature="e#11147#11736#0" />
+            <element signature="e#11790#12367#0" />
+            <element signature="e#12447#13242#0" />
+            <element signature="e#13296#13880#0" />
+            <element signature="e#14598#15393#0" />
+            <element signature="e#13933#14510#0" />
+            <element signature="e#14546#14622#0" />
+            <element signature="e#14664#14731#0" />
           </folding>
         </state>
       </provider>

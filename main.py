@@ -10,6 +10,7 @@ import numpy as np
 from numpy import *
 from crop import Cropping
 from Filtering import Filter
+import random
 
 class Application(tk.Tk):
     def __init__(self):
@@ -21,6 +22,7 @@ class Application(tk.Tk):
         #self.noise_type = None
         self.variance = None
         self.upper = None
+        self.input_image_added_noise = None
 
         self.title("IMAGE RESTORATION")
         #self.geometry("550x550")
@@ -77,22 +79,31 @@ class Application(tk.Tk):
                                          command=lambda: self.plus_noise("Gamma_Noise"))
         self.gamma_noise_button.pack(side = BOTTOM, fill = X)
 
+        self.s_and_p_button = Button(self, text="ADD SALT & PEPPERS", highlightbackground='gray', fg="honeydew4",font=("", 20),
+                                         command=lambda: self.plus_noise("Salt_and_Peppers"))
+        self.s_and_p_button.pack(side=BOTTOM, fill=X)
+
+        self.g_and_u_button = Button(self, text="ADD GAUSSIAN & UNIFORM", highlightbackground='gray', fg="dark goldenrod",
+                                     font=("", 20),command=lambda: self.plus_noise("Gaussian_and_Uniform"))
+        self.g_and_u_button.pack(side=BOTTOM, fill=X)
+
 
     def plus_noise(self,noise_type):
         #self.noise_window = tk.Toplevel()
         np.random.seed(1)
-        rows = self.img.width()
-        cols = self.img.height()
+        rows = self.img.height()
+        cols = self.img.width()
         input_image = self.pilImage
+        array_img = np.asarray(self.pilImage)
         output_dir = 'Noise/'
 
         if(noise_type == "Gaussian_Noise"):
             #self.noise_type = "Gaussian_Noise"
             self.get_noise_parameters("Gaussian") #get variance input
             noise_gaussian = np.random.normal(0, self.variance, (rows, cols))
-            input_image_added_noise = input_image + noise_gaussian
-            input_image_added_noise = np.where(input_image_added_noise > 255, 255, input_image_added_noise)
-            input_image_added_noise = np.where(input_image_added_noise < 0, 0, input_image_added_noise)
+            self.input_image_added_noise = input_image + noise_gaussian
+            self.input_image_added_noise = np.where(self.input_image_added_noise > 255, 255, self.input_image_added_noise)
+            self.input_image_added_noise = np.where(self.input_image_added_noise < 0, 0, self.input_image_added_noise)
             self.path = output_dir + 'Gaussian_Noise' + ".png"
             self.noise_window = tk.Toplevel()
             self.noise_window.title("Gaussian Noise Image")
@@ -103,8 +114,8 @@ class Application(tk.Tk):
             noise_salt = np.random.randint(0, 256, (rows, cols))
             noise_salt = np.where(noise_salt < self.noise_prob * 256, 255, 0)
             noise_salt.astype("float")
-            input_image_added_noise = input_image + noise_salt
-            input_image_added_noise = np.where(input_image_added_noise > 255, 255, input_image_added_noise)
+            self.input_image_added_noise = input_image + noise_salt
+            self.input_image_added_noise = np.where(self.input_image_added_noise > 255, 255, self.input_image_added_noise)
             self.path = output_dir + 'Salt_Noise' + ".png"
             self.noise_window = tk.Toplevel()
             self.noise_window.title("Salt Noise Image")
@@ -115,8 +126,8 @@ class Application(tk.Tk):
             noise_pepper = np.random.randint(0, 256, (rows, cols))
             noise_pepper = np.where(noise_pepper < self.noise_prob * 256, -255, 0)
             noise_pepper.astype("float")
-            input_image_added_noise = input_image + noise_pepper
-            input_image_added_noise = np.where(input_image_added_noise < 0, 0, input_image_added_noise)
+            self.input_image_added_noise = input_image + noise_pepper
+            self.input_image_added_noise = np.where(self.input_image_added_noise < 0, 0, self.input_image_added_noise)
             self.path = output_dir + 'Peppers_Noise' + ".png"
             self.noise_window = tk.Toplevel()
             self.noise_window.title("Peppers Noise Image")
@@ -126,8 +137,8 @@ class Application(tk.Tk):
             self.get_noise_parameters("Uniform")
             noise_uniform = np.random.randint(-(self.upper), self.upper, (rows, cols))
             noise_uniform.astype("float")
-            input_image_added_noise = input_image + noise_uniform
-            input_image_added_noise = np.uint8(np.where(input_image_added_noise < 0, 0, np.where(input_image_added_noise > 255, 255, input_image_added_noise)))
+            self.input_image_added_noise = input_image + noise_uniform
+            self.input_image_added_noise = np.uint8(np.where(self.input_image_added_noise < 0, 0, np.where(self.input_image_added_noise > 255, 255, self.input_image_added_noise)))
             self.path = output_dir + 'Uniform_Noise' + ".png"
             self.noise_window = tk.Toplevel()
             self.noise_window.title("Uniform Noise Image")
@@ -140,8 +151,8 @@ class Application(tk.Tk):
             noise_gamma = np.zeros((rows, cols))
             for j in range(b):
                 noise_gamma = noise_gamma + (-1 / a) * np.log(1 - np.random.rand(rows, cols))
-            input_image_added_noise = input_image + noise_gamma
-            input_image_added_noise = np.uint8(np.where(input_image_added_noise < 0, 0,np.where(input_image_added_noise > 255, 255,input_image_added_noise)))
+            self.input_image_added_noise = input_image + noise_gamma
+            self.input_image_added_noise = np.uint8(np.where(self.input_image_added_noise < 0, 0,np.where(self.input_image_added_noise > 255, 255,self.input_image_added_noise)))
             self.path = output_dir + 'Gamma_Noise' + ".png"
             self.noise_window = tk.Toplevel()
             self.noise_window.title("Gamma Noise Image")
@@ -152,14 +163,24 @@ class Application(tk.Tk):
             a = self.a
             b = self.b
             noise_rayleigh = a + np.power((-b * np.log(1 - np.random.rand(rows, cols))), 0.5)
-            input_image_added_noise = input_image + noise_rayleigh
-            input_image_added_noise = np.uint8(np.where(input_image_added_noise < 0, 0,np.where(input_image_added_noise > 255, 255,input_image_added_noise)))
+            self.input_image_added_noise = input_image + noise_rayleigh
+            self.input_image_added_noise = np.uint8(np.where(self.input_image_added_noise < 0, 0,np.where(self.input_image_added_noise > 255, 255,self.input_image_added_noise)))
             self.path = output_dir + 'Rayleigh_Noise' + ".png"
             self.noise_window = tk.Toplevel()
             self.noise_window.title("Rayleigh Noise Image")
 
+        elif(noise_type == "Salt_and_Peppers"):
+            self.get_noise_parameters("Salt_and_Peppers")
+            self.salt_and_peppers(array_img, rows, cols, output_dir, self.noise_prob)
+            self.input_image_added_noise = np.uint8(np.where(self.input_image_added_noise < 0, 0, np.where(self.input_image_added_noise > 255, 255, self.input_image_added_noise)))
 
-        cv2.imwrite(self.path, input_image_added_noise)
+
+        elif(noise_type == "Gaussian_and_Uniform"):
+            self.get_noise_parameters("Gaussian_and_Uniform")
+            self.gau_and_uni(array_img, rows, cols,self.variance, self.upper,output_dir)
+
+
+        cv2.imwrite(self.path, self.input_image_added_noise)
         PIL_image = Image.open(self.path)
         image_add_noise = ImageTk.PhotoImage(PIL_image)
 
@@ -181,11 +202,47 @@ class Application(tk.Tk):
         Filter_Button.pack(side=TOP, fill=BOTH)
 
 
+    def salt_and_peppers(self,image,rows,cols,out_path,prob):
+        result_image = np.zeros((rows,cols))
+        thres = 1 - prob
+        for i in range(rows):
+            for j in range(cols):
+                rdn = random.random()
+                if rdn < prob:
+                    result_image[i][j] = 0
+                elif rdn > thres:
+                    result_image[i][j] = 255
+                else:
+                    result_image[i][j] = image[i][j]
+
+        self.path = out_path + 'Salt_And_Peppers' + ".png"
+        self.noise_window = tk.Toplevel()
+        self.noise_window.title("Salt And Peppers Image")
+        self.input_image_added_noise = result_image
+
+    def gau_and_uni(self,image,rows,cols,variance,uppper,out_path):
+        result_image = np.zeros((rows, cols))
+
+        gauss = np.random.normal(0, variance, (rows, cols))
+        noise_uniform = np.random.randint(-(uppper), uppper, (rows, cols))
+        for i in range(rows):
+            for j in range(int(cols/2)):
+                result_image[i,j] = image[i,j] + gauss[i,j]
+
+        for i in range(rows):
+            for j in range(int(cols/2),cols):
+                result_image[i, j] = image[i, j] + noise_uniform[i, j]
+
+        self.path = out_path + 'Gaussian_And_Uniform' + ".png"
+        self.noise_window = tk.Toplevel()
+        self.noise_window.title("Gaussian And Uniform Image")
+        self.input_image_added_noise = result_image
+
     def get_noise_parameters(self, noise_type):
         self.input_window = tk.Toplevel()
         self.input_window.title("User Noise Input")
 
-        if(noise_type == "salt" or noise_type == "peppers" ):
+        if(noise_type == "salt" or noise_type == "peppers" or noise_type == "Salt_and_Peppers" ):
             label = tk.Label(self.input_window, text=" Noise Parameters", font=(" ", 20))
             label.grid(row=0, column=1)
             probability_density = tk.Label(self.input_window, text="Probability:")
@@ -237,9 +294,23 @@ class Application(tk.Tk):
             my_button.grid(row=3, column=1)
             self.wait_window(self.input_window)
 
+        elif(noise_type == "Gaussian_and_Uniform"):
+            label = tk.Label(self.input_window, text=" Noise Parameters", font=(" ", 20))
+            label.grid(row=0, column=1)
+            var_label = tk.Label(self.input_window, text="Gaussian Noise Variance :")
+            upper_label = tk.Label(self.input_window, text="Uniform Noise Upper Range :")
+            var_label.grid(row=1, column=0, sticky=W)
+            upper_label.grid(row=2, column=0, sticky=W)
+            self.my_var_entry = tk.Entry(self.input_window)
+            self.my_var_entry.grid(row=1, column=1)
+            self.my_upper_entry = tk.Entry(self.input_window)
+            self.my_upper_entry.grid(row=2, column=1)
+            my_button = tk.Button(self.input_window, text="Submit", command=lambda: self.noise_parameter(noise_type))
+            my_button.grid(row=3, column=1)
+            self.wait_window(self.input_window)
 
     def noise_parameter(self,noise_type):
-        if (noise_type == "salt" or noise_type == "peppers"):
+        if (noise_type == "salt" or noise_type == "peppers" or noise_type == "Salt_and_Peppers"):
             self.noise_prob = float(self.my_prob_entry.get())
 
         elif (noise_type == "rayleigh" or noise_type == "gamma"):
@@ -250,6 +321,10 @@ class Application(tk.Tk):
             self.variance = float(self.my_var_entry.get())
 
         elif (noise_type == "Uniform"):
+            self.upper = float(self.my_upper_entry.get())
+
+        elif(noise_type == "Gaussian_and_Uniform"):
+            self.variance = float(self.my_var_entry.get())
             self.upper = float(self.my_upper_entry.get())
 
         self.update()

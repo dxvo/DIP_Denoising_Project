@@ -3,11 +3,12 @@ import tkinter as tk
 from PIL import *
 from PIL import Image, ImageTk
 import cv2
-import numpy as np
 from numpy import *
+import numpy as np
 import restart
 import os
 from Post_Filter import After_Analysis
+from scipy import ndimage
 
 class Filter(tk.Tk):
     def __init__(self,path):
@@ -22,6 +23,8 @@ class Filter(tk.Tk):
         self.res = None
         self.order = None
         self.filter_type = None
+        self.sizeMax = None #this is for adaptive median only
+
 
         self.title("IMAGE FILTERING")
         self.configure(background='black')
@@ -30,7 +33,10 @@ class Filter(tk.Tk):
 
         #This is to display degraded_image
         self.PIL_image = Image.open(self.path)
+        self.array_image = np.asarray(self.PIL_image)
         self.width, self.height = self.PIL_image.size
+        self.variance = ndimage.variance(self.array_image)
+
         self.image_noise = ImageTk.PhotoImage(self.PIL_image)
         noise_image_label = Label(self, image=self.image_noise)
         noise_image_label.pack(side=LEFT)
@@ -62,8 +68,13 @@ class Filter(tk.Tk):
         self.trimmed_button.pack(side=TOP, fill=BOTH)
 
 
-        self.adaptive_button = Button(self, text="Adaptive Filter", fg="blue", font=("", 20), command=self.print)
-        self.adaptive_button.pack(side=TOP, fill=BOTH)
+        self.adaptive_Reduc_button = Button(self, text="Adaptive Reduction Filter", fg="blue", font=("", 20),
+                                            command=lambda: self.adaptive_reduction("adaptive_reduction"))
+        self.adaptive_Reduc_button.pack(side=TOP, fill=BOTH)
+
+        self.adaptive_median_button = Button(self, text="Adaptive Median Filter", fg="blue", font=("", 20),
+                                             command=lambda: self.adaptive_median("adaptive_median"))
+        self.adaptive_median_button.pack(side=TOP, fill=BOTH)
 
 
         self.restart_button = Button(self, text="Restart Program", fg="RED", font=("", 20), highlightbackground='Yellow', command=self.restart)
@@ -269,6 +280,96 @@ class Filter(tk.Tk):
         self.save_image()
         self.display_image()
 
+    def adaptive_reduction(self, filter_type):
+        self.filter_type = filter_type
+        self.get_filter_size() #this will get height and width of filter
+
+        filtered_image = np.zeros(shape=(self.height, self.width))
+        pad_h = int(1 / 2 * (self.filter_h - 1))
+        pad_w = int(1 / 2 * (self.filter_w - 1))
+        image_pad = np.pad(self.PIL_image, ((pad_h, pad_h), (pad_w, pad_w)), 'constant', constant_values=0)
+
+        for h in range(self.height):
+            for w in range(self.width):  # check each pixel
+                vert_start = h
+                vert_end = h + self.filter_h
+                horiz_start = w
+                horiz_end = w + self.filter_w
+                image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
+
+                if (self.variance == 0):
+                    filtered_image[h, w] = self.array_image[h, w]
+                else:
+                    local_variance = ndimage.variance(image_slice)  # the local variance of image slice
+                    mean = np.sum(image_slice) / (self.filter_h * self.filter_w)   # the mean or average
+
+                    if (self.variance == local_variance):
+                        filtered_image[h,w] =  np.uint8(mean)
+                    elif (int(local_variance) == 0):
+                        filtered_image[h, w] = self.array_image[h, w]
+                    else:
+                        filtered_image[h, w] = np.uint8(self.array_image[h, w] - (self.variance) / (local_variance * (self.array_image[h, w] - mean)))
+
+        self.filtered_image_result = self.full_contrast_stretch(filtered_image)
+        self.save_image()
+        self.display_image()
+
+    def adaptive_median(self,filter_type):
+        self.filter_type = filter_type
+        self.get_filter_size()  # this will get height and width of filter
+
+        filtered_image = np.zeros(shape=(self.height, self.width))
+        maxN = int(1 / 2 * (self.sizeMax - 1))
+        image_pad = np.pad(self.PIL_image, ((maxN, maxN), (maxN, maxN)), 'constant', constant_values=0)
+
+        for h in range(self.height):
+            for w in range(self.width):  # check each pixel
+                vert_start = h
+                vert_end = h + self.sizeMax
+                horiz_start = w
+                horiz_end = w + self.sizeMax
+                image_slice = image_pad[vert_start:vert_end, horiz_start:horiz_end]
+
+                value = self.array_image[h, w]
+                filtered_image[h,w] = self.adaptive_median_recursive(image_slice,value,self.filter_h,self.filter_w,self.sizeMax)
+
+
+    def adaptive_median_recursive(self,slice_image,cur_value,fil_height,fil_width,max):
+
+        windows_vert_start = int(.5 * (max - fil_height))
+        windows_horiz_start = int(.5 * (max - fil_width))
+        windows_vert_end = int(.5 * (max + fil_height))
+        windows_horiz_end = int(.5 * (max + fil_width))
+
+        windowS = slice_image[windows_vert_start:windows_vert_end, windows_horiz_start:windows_horiz_end]
+        try:
+            zmed = np.median(windowS)
+
+        except ValueError:  # raise if zero-size array is empty
+            zmed = 0
+        try:
+            zmin = np.min(windowS)
+        except ValueError:  # raise if zero-size array is empty
+            zmin = 0
+        try:
+            zmax = np.max(windowS)
+        except ValueError:
+            zmax = 0
+
+            # stage A
+        if zmed > zmin and zmed < zmax:
+            # stage B
+            if cur_value > zmin and cur_value < zmax:  # if zmin<zxy<zmax=> in the range
+                return cur_value
+            else:
+                return zmed
+        else:
+
+            if (self.filter_h + 2) > self.sizeMax or (self.filter_w + 2) > self.sizeMax:  # check the limit of windows
+                return zmed
+            else:
+                return self.adaptive_median_recursive(slice_image, cur_value,  fil_height + 2, fil_width + 2, max)
+
 
     def compute_histogram(self):
         self.destroy()
@@ -301,8 +402,13 @@ class Filter(tk.Tk):
     def get_hwo(self):
         self.filter_h = int(self.my_entry_h.get())
         self.filter_w = int(self.my_entry_w.get())
+
         if(self.filter_type == "contraharmonic" or self.filter_type == "trim"):
             self.order = int(self.my_entry_order.get())
+
+        if (self.filter_type == "adaptive_median"):
+            self.sizeMax = int(self.my_entry_maxsize.get())
+
         self.update()
         self.input_window.destroy()
 
@@ -343,6 +449,12 @@ class Filter(tk.Tk):
             self.my_entry_order = tk.Entry(self.input_window)
             self.my_entry_order.grid(row=3, column=1)
 
+        if(self.filter_type == "adaptive_median"):
+            maxsize  = tk.Label(self.input_window, text="Max_Size:")
+            maxsize.grid(row=3, column=0, sticky=W)
+            self.my_entry_maxsize = tk.Entry(self.input_window)
+            self.my_entry_maxsize.grid(row=3, column=1)
+
         my_button = tk.Button(self.input_window, text="Submit", command=self.get_hwo)
         my_button.grid(row=4, column=1)
         self.wait_window(self.input_window)
@@ -356,6 +468,3 @@ class Filter(tk.Tk):
 
     def restart(self):
         restart.restart_program(self)
-
-    def print(self):
-        print("hello")
