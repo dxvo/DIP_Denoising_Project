@@ -169,21 +169,6 @@ class Cropping(tk.Tk):
         self.destroy()
         Filter(self.path)
 
-        """
-        if(self.image_name == "Gaussian_Noise"):
-            Gaussian()
-        elif(self.image_name == "Uniform_Noise"):
-            Uniform()
-        elif (self.image_name == "Gamma_Noise"):
-            Gamma()
-        elif (self.image_name == "Rayleigh_Noise"):
-            Rayleigh()
-        elif (self.image_name == "Salt_Noise"):
-            Salt()
-        elif (self.image_name == "Peppers_Noise"):
-            Peppers()
-
-        """
     def restart_program(self):
         python = sys.executable
         os.execl(python, python, *sys.argv)
