@@ -41,8 +41,6 @@ ax.set_xlim([mean_value - 1.1*var_value,mean_value + 1.1*var_value])
 ax.set_title ("Noise Estimation", fontsize=16)
 
 
-
-
 x_axes = np.arange(imean - ivar, imean + ivar, (2*ivar)/len(h[0]))
 y_axes = np.arange(0,np.amax(h[0]))
 rects1 = ax.plot(x_axes, h[0], y_axes)

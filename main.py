@@ -23,6 +23,7 @@ class Application(tk.Tk):
         self.variance = None
         self.upper = None
         self.input_image_added_noise = None
+        self.rayleigh_variance = None
 
         self.title("IMAGE RESTORATION")
         #self.geometry("550x550")
@@ -159,15 +160,24 @@ class Application(tk.Tk):
 
         elif (noise_type == "Rayleigh_Noise"):
             self.get_noise_parameters("rayleigh")
-            #self.noise_type = "Rayleigh_Noise"
+
+            mean_value = 0
+            variance_value = self.rayleigh_variance
+            self.a = mean_value - np.sqrt(np.pi / (4 - np.pi)) * variance_value
+            self.b = 4 * np.power(variance_value, 2) / (4 - np.pi)
+
             a = self.a
             b = self.b
+
             noise_rayleigh = a + np.power((-b * np.log(1 - np.random.rand(rows, cols))), 0.5)
+
             self.input_image_added_noise = input_image + noise_rayleigh
             self.input_image_added_noise = np.uint8(np.where(self.input_image_added_noise < 0, 0,np.where(self.input_image_added_noise > 255, 255,self.input_image_added_noise)))
             self.path = output_dir + 'Rayleigh_Noise' + ".png"
             self.noise_window = tk.Toplevel()
             self.noise_window.title("Rayleigh Noise Image")
+
+
 
         elif(noise_type == "Salt_and_Peppers"):
             self.get_noise_parameters("Salt_and_Peppers")
@@ -266,7 +276,19 @@ class Application(tk.Tk):
             my_button.grid(row=3, column=1)
             self.wait_window(self.input_window)
 
-        elif(noise_type == "rayleigh" or noise_type == "gamma" ):
+        elif (noise_type == "rayleigh"):
+            label = tk.Label(self.input_window, text=" Rayleigh Noise Parameters", font=(" ", 20))
+            label.grid(row=0, column=1)
+            variance = tk.Label(self.input_window, text="Noise Variance:")
+            variance.grid(row=1, column=0, sticky=W)
+            self.my_var_entry = tk.Entry(self.input_window)
+            self.my_var_entry.grid(row=1, column=1)
+
+            my_button = tk.Button(self.input_window, text="Submit", command=lambda: self.noise_parameter(noise_type))
+            my_button.grid(row=3, column=1)
+            self.wait_window(self.input_window)
+
+        elif(noise_type == "gamma" ):
             label = tk.Label(self.input_window, text=" Noise Parameters", font=(" ", 20))
             label.grid(row=0, column=1)
             a_label = tk.Label(self.input_window, text="Displacement a:")
@@ -313,9 +335,12 @@ class Application(tk.Tk):
         if (noise_type == "salt" or noise_type == "peppers" or noise_type == "Salt_and_Peppers"):
             self.noise_prob = float(self.my_prob_entry.get())
 
-        elif (noise_type == "rayleigh" or noise_type == "gamma"):
+        elif (noise_type == "gamma"):
             self.a = float((self.my_a_entry.get()).replace(',',''))
             self.b = float((self.my_b_entry.get()).replace(',',''))
+
+        elif(noise_type == "rayleigh"):
+            self.rayleigh_variance = float((self.my_var_entry.get()).replace(',',''))
 
         elif (noise_type == "Gaussian"):
             self.variance = float(self.my_var_entry.get())
